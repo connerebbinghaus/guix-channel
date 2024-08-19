@@ -27,7 +27,10 @@
   #:use-module (gnu bootloader grub)
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
-  #:use-module (guix gexp))
+  #:use-module (guix gexp)
+  #:export (conner-os-base
+	    conner-os-desktop
+	    conner-laptop-os))
 
 (define-public user-conner
   (user-account
