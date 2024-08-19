@@ -1,4 +1,4 @@
-(define-module (prism-launcher)
+(define-module (conner packages prism-launcher)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix utils)
   #:use-module (guix packages)
