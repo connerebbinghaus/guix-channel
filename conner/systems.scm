@@ -21,6 +21,7 @@
 (define-public (guix-config-with-substitutes config)
   (guix-configuration
    (inherit config)
+   (discover? #t)
    (substitute-urls
     (append (list "https://substitutes.nonguix.org")
 	    %default-substitute-urls))
@@ -34,7 +35,10 @@
    (service openssh-service-type)
    (service zram-device-service-type (zram-device-configuration
                                       (size "8G")
-                                      (priority 32766)))))
+                                      (priority 32766)))
+   (service guix-publish-service-type (guix-publish-configuration
+				       (host "0.0.0.0")
+				       (advertise? #t)))))
 
 (define-public base-os
   (operating-system
