@@ -5,6 +5,22 @@
   #:use-module (gnu home)
   #:use-module (gnu packages)
   #:use-module (gnu packages gnupg)
+  #:use-module (gnu packages file)
+  #:use-module (gnu packages version-control)
+  #:use-module (gnu packages shellutils)
+  #:use-module (gnu packages emacs-xyz)
+  #:use-module (gnu packages rust-apps)
+  #:use-module (gnu packages emacs)
+  #:use-module (gnu packages guile)
+  #:use-module (gnu packages admin)
+  #:use-module (gnu packages gnupg)
+  #:use-module (gnu packages tmux)
+  #:use-module (gnu packages kde-utils)
+  #:use-module (gnu packages engineering)
+  #:use-module (gnu packages libreoffice)
+  #:use-module (gnu packages scanner)
+  #:use-module (gnu packages java)
+  
   #:use-module (gnu services)
   #:use-module (guix gexp)
   #:use-module (gnu home services shells)
@@ -13,6 +29,7 @@
   #:use-module (guix build utils)
   #:use-module (gnu packages shellutils)
   #:use-module (nongnu packages mozilla)
+  #:use-module (sops packages sops)
   #:export (conner-user
 	    conner-user-desktop
 	    conner-home
@@ -31,16 +48,34 @@
    (inherit conner-user)
    (supplementary-groups (append (user-account-supplementary-groups conner-user) desktop-supplementary-groups))))
 
+
+
+(define-public %conner-packages
+  (list
+   file
+   git direnv ripgrep
+   emacs guile-3.0 emacs-geiser emacs-geiser-guile emacs-paredit emacs-magit emacs-envrc emacs-org
+   htop btop
+   tmux
+   gnupg pinentry-tty
+   sops))
+
+(define-public %conner-packages-desktop
+  (cons*
+   firefox
+   ark
+   kate
+   freecad
+   kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
+   prusa-slicer
+   libreoffice xsane
+   openjdk17
+   prism-launcher
+   %conner-packages))
+
 (define-public conner-home
   (home-environment
-   (packages (specifications->packages (list
-					"file"
-					"git" "direnv" "ripgrep"
-					"emacs" "guile" "emacs-geiser" "emacs-geiser-guile" "emacs-paredit" "emacs-magit" "emacs-envrc" "emacs-org"
-					"htop" "btop"
-					"tmux"
-					"gnupg" "pinentry-tty"
-					)))
+   (packages %conner-packages)
    (services
     (list (service home-bash-service-type
                    (home-bash-configuration
@@ -58,20 +93,7 @@ export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
 
 (define-public conner-home-desktop
   (home-environment
-   (packages (cons* firefox prism-launcher
-		    (specifications->packages (list
-					"ark" "file"
-					"git" "direnv" "ripgrep"
-					"keepassxc"
-					"kate" "emacs" "guile" "emacs-geiser" "emacs-geiser-guile" "emacs-paredit" "emacs-magit" "emacs-envrc" "emacs-org"
-					"htop" "btop"
-					"freecad"
-					"kicad" "kicad-doc" "kicad-footprints" "kicad-packages3d" "kicad-symbols" "kicad-templates"
-					"libreoffice" "xsane"
-					"openjdk@17"
-					"tmux"
-					"gnupg" "pinentry-qt"
-					))))
+   (packages %conner-packages-desktop)
    (services
     (list (service home-bash-service-type
                    (home-bash-configuration
