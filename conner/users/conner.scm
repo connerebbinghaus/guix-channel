@@ -20,7 +20,7 @@
   #:use-module (gnu packages libreoffice)
   #:use-module (gnu packages scanner)
   #:use-module (gnu packages java)
-  
+  #:use-module (gnu packages password-utils)
   #:use-module (gnu services)
   #:use-module (guix gexp)
   #:use-module (gnu home services shells)
@@ -71,6 +71,7 @@
    libreoffice xsane
    openjdk17
    prism-launcher
+   keepassxc
    %conner-packages))
 
 (define-public conner-home
