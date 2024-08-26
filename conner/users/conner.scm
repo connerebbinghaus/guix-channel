@@ -29,6 +29,7 @@
   #:use-module (guix build utils)
   #:use-module (gnu packages shellutils)
   #:use-module (nongnu packages mozilla)
+  #:use-module (nongnu packages game-client)
   #:use-module (sops packages sops)
   #:export (conner-user
 	    conner-user-desktop
@@ -70,7 +71,7 @@
    prusa-slicer
    libreoffice xsane
    openjdk17
-   prism-launcher
+   prism-launcher steam
    keepassxc
    %conner-packages))
 
