@@ -71,7 +71,7 @@
    prusa-slicer
    libreoffice xsane
    openjdk17
-   prism-launcher steam
+   prism-launcher steam heroic
    keepassxc
    %conner-packages))
 
