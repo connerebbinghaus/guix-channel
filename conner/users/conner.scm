@@ -15,6 +15,7 @@
   #:use-module (gnu packages admin)
   #:use-module (gnu packages gnupg)
   #:use-module (gnu packages tmux)
+  #:use-module (gnu packages kde)
   #:use-module (gnu packages kde-utils)
   #:use-module (gnu packages engineering)
   #:use-module (gnu packages libreoffice)
@@ -65,7 +66,7 @@
   (cons*
    firefox
    ark
-   kate
+   kate okular
    freecad
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
    prusa-slicer
