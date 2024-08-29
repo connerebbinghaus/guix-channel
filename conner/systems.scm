@@ -24,11 +24,14 @@
    (discover? #t)
    (substitute-urls
     (append (list "https://substitutes.nonguix.org")
+	    
 	    %default-substitute-urls))
    (authorized-keys
     (append (list (plain-file "non-guix.pub"
-			      "(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))"))
-	    %default-authorized-guix-keys))))
+			      "(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))")
+		  (plain-file "conner-pc.pub"
+			      "(public-key (ecc (curve Ed25519) (q #69138244040AC8BBDF3241686EE3B5D9D070299E439F35B85D836322DBCA814B#)))")
+	    %default-authorized-guix-keys)))))
 
 (define-public common-extra-services
   (list
@@ -38,6 +41,7 @@
                                       (priority 32766)))
    (service guix-publish-service-type (guix-publish-configuration
 				       (host "0.0.0.0")
+				       (port 8999)
 				       (advertise? #t)))))
 
 (define-public base-os
