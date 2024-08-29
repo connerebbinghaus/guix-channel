@@ -22,6 +22,7 @@
   #:use-module (gnu packages scanner)
   #:use-module (gnu packages java)
   #:use-module (gnu packages password-utils)
+  #:use-module (gnu packages texlive)
   #:use-module (gnu services)
   #:use-module (guix gexp)
   #:use-module (gnu home services shells)
@@ -66,7 +67,7 @@
   (cons*
    firefox
    ark
-   kate okular
+   kate okular texlive
    freecad
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
    prusa-slicer
