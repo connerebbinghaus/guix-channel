@@ -25,6 +25,7 @@
   #:use-module (gnu packages texlive)
   #:use-module (gnu services)
   #:use-module (guix gexp)
+  #:use-module (gnu home services)
   #:use-module (gnu home services shells)
   #:use-module (gnu home services syncthing)
   #:use-module (gnu home services gnupg)
@@ -93,7 +94,11 @@ export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
                    (home-gpg-agent-configuration
                     (pinentry-program
                      (file-append pinentry-tty "/bin/pinentry-tty"))
-                    (ssh-support? #t)))))))
+                    (ssh-support? #t)))
+	  (simple-service 'my-entire-configuration
+			  home-files-service-type
+			  (list `(".config"
+				  ,(local-file "files/.config" #:recursive? #t))))))))
 
 (define-public conner-home-desktop
   (home-environment
@@ -112,6 +117,10 @@ export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
                    (home-gpg-agent-configuration
                     (pinentry-program
                      (file-append pinentry-qt "/bin/pinentry-qt"))
-                    (ssh-support? #t)))))))
+                    (ssh-support? #t)))
+	  (simple-service 'my-entire-configuration
+			  home-files-service-type
+			  (list `(".config/emacs/init.el"
+				  ,(local-file "files/.config/emacs/init.el"))))))))
   
   
