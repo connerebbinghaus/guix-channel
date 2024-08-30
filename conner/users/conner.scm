@@ -68,7 +68,8 @@
   (cons*
    firefox
    ark
-   kate okular texlive
+   kate okular
+   texlive emacs-auctex
    freecad
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
    prusa-slicer
