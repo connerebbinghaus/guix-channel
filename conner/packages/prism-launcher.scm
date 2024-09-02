@@ -18,6 +18,14 @@
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages pulseaudio))
 
+(define quazip-qt6
+  (package
+   (inherit quazip)
+   (name "quazip")
+   (inputs (modify-inputs (package-inputs quazip)
+			  (replace "qtbase" qtbase)
+			  (append qt5compat)))))
+
 (define-public prism-launcher
   (package
    (name "prism-launcher")
@@ -38,10 +46,10 @@
 				      "libraries/extra-cmake-modules"
 				      "libraries/filesystem" ; gulrak-filesystem
 				      "libraries/quazip"
-				      ;"libraries/tomlplusplus" ; FIXME: something is wrong with guix's tomlplusplus, strange cmake errors
+				      "libraries/tomlplusplus" ; FIXME: something is wrong with guix's tomlplusplus, strange cmake errors
 				      "libraries/zlib")))))
    (arguments
-    `(#:configure-flags '("-DLauncher_QT_VERSION_MAJOR=5") ; Use Qt5, guix's quazip uses it
+    `(;#:configure-flags '("-DLauncher_QT_VERSION_MAJOR=5") ; Use Qt5, guix's quazip uses it
       #:phases
       (modify-phases %standard-phases ; Taken from https://gitlab.com/guix-gaming-channels/games/-/blob/66fe8b72d114ee2de218fc46d0f7ad95d8b3129e/games/packages/minecraft.scm
 		     (add-after 'install 'patch-paths
@@ -67,12 +75,13 @@
    (inputs
     (list
      bash-minimal
-     qtbase-5
+     qtbase
+     qt5compat
      qtwayland
      cmark
      gulrak-filesystem
-     quazip
-     ;tomlplusplus ; FIXME
+     quazip-qt6
+     tomlplusplus ; FIXME
      zlib
      mesa
      libx11
