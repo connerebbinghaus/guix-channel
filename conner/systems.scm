@@ -7,6 +7,8 @@
   #:use-module (gnu services guix)
   #:use-module (gnu services linux)
   #:use-module (gnu services ssh)
+  #:use-module (gnu system)
+  #:use-module (gnu system file-systems)
   #:use-module (gnu system keyboard)
   #:use-module (gnu bootloader)
   #:use-module (gnu bootloader grub)
@@ -15,8 +17,8 @@
   #:use-module (nongnu system linux-initrd)
   #:export (guix-config-with-substitutes
 	    common-extra-services
+	    tmp-tmpfs-file-system
 	    base-os))
-
 
 (define-public (guix-config-with-substitutes config)
   (guix-configuration
@@ -39,6 +41,13 @@
    (service guix-publish-service-type (guix-publish-configuration
 				       (host "0.0.0.0")
 				       (advertise? #t)))))
+
+(define-public tmp-tmpfs-file-system
+  (file-system
+   (mount-point "/tmp")
+   (device "none")
+   (type "tmpfs")
+   (check? #f)))
 
 (define-public base-os
   (operating-system
