@@ -10,7 +10,7 @@
    (inherit base-os-desktop)
    (host-name "conner-pc")
    (kernel-arguments
-    (cons* "resume=2c9faf91-40d3-489c-8fb8-a51faacb542b"
+    (cons* "resume=/dev/nvme0n1p2"
            %default-kernel-arguments))
    (swap-devices (list (swap-space
                         (target (uuid
