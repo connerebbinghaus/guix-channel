@@ -24,6 +24,7 @@
   #:use-module (gnu packages java)
   #:use-module (gnu packages password-utils)
   #:use-module (gnu packages texlive)
+  #:use-module (gnu packages gimp)
   #:use-module (gnu services)
   #:use-module (guix gexp)
   #:use-module (gnu home services)
@@ -78,6 +79,7 @@
    openjdk17
    prism-launcher steam heroic
    keepassxc
+   gimp
    %conner-packages))
 
 (define-public conner-home
