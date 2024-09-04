@@ -1,7 +1,6 @@
 (define-module (conner users conner)
   #:use-module (conner users)
   #:use-module (conner packages prism-launcher)
-  #:use-module (conner packages prusa-slicer)
   #:use-module (gnu system shadow)
   #:use-module (gnu home)
   #:use-module (gnu packages)
@@ -74,7 +73,7 @@
    texlive emacs-auctex
    freecad
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
-   prusa-slicer-fixed ; glfw-3.4 fails to build
+   prusa-slicer
    libreoffice xsane
    openjdk17
    prism-launcher steam heroic
