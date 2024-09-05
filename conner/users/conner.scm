@@ -24,6 +24,8 @@
   #:use-module (gnu packages password-utils)
   #:use-module (gnu packages texlive)
   #:use-module (gnu packages gimp)
+  #:use-module (gnu packages graphics)
+  #:use-module (gnu packages inkscape)
   #:use-module (gnu services)
   #:use-module (guix gexp)
   #:use-module (gnu home services)
@@ -78,7 +80,7 @@
    openjdk17
    prism-launcher steam heroic
    keepassxc
-   gimp
+   gimp inkscape blender
    %conner-packages))
 
 (define-public conner-home
