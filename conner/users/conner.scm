@@ -71,7 +71,7 @@
   (cons*
    firefox
    ark
-   kate okular
+   kate okular gwenview
    texlive emacs-auctex
    freecad
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
