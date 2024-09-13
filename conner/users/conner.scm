@@ -77,7 +77,7 @@
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
    prusa-slicer
    libreoffice xsane
-   openjdk17
+   openjdk17 openjdk21
    prism-launcher steam heroic
    keepassxc
    gimp inkscape blender
