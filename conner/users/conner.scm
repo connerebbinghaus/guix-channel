@@ -26,6 +26,7 @@
   #:use-module (gnu packages gimp)
   #:use-module (gnu packages graphics)
   #:use-module (gnu packages inkscape)
+  #:use-module (gnu packages virtualization)
   #:use-module (gnu services)
   #:use-module (guix gexp)
   #:use-module (gnu home services)
@@ -81,6 +82,7 @@
    prism-launcher steam heroic
    keepassxc
    gimp inkscape blender
+   virt-manager
    %conner-packages))
 
 (define-public conner-home
