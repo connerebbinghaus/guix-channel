@@ -1,6 +1,8 @@
 (define-module (conner systems pc)
   #:use-module (conner systems)
   #:use-module (conner systems desktop)
+  #:use-module (gnu services)
+  #:use-module (gnu services virtualization)
   #:use-module (gnu system)
   #:use-module (gnu system file-systems)
   #:export (conner-pc-os))
@@ -15,6 +17,10 @@
    (swap-devices (list (swap-space
                         (target (uuid
                                  "2c9faf91-40d3-489c-8fb8-a51faacb542b")))))
+   (services (cons*
+	      (service libvirt-service-type)
+	      desktop-extra-services))
+
    (file-systems (cons*
 		  tmp-tmpfs-file-system
 		  (file-system

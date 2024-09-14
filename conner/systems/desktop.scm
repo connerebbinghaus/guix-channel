@@ -23,12 +23,7 @@
 
 (define-public desktop-packages (cons* print-manager system-config-printer sane-airscan bluedevil bluez-qt podman podman-compose %base-packages))
 
-(define-public base-os-desktop
-  (operating-system
-   (inherit base-os)
-   (users (cons* conner-user-desktop %base-user-accounts))
-   (packages desktop-packages)
-   (services (cons*
+(define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
 	      (service plasma-desktop-service-type)
 	      (service sddm-service-type)
@@ -43,4 +38,11 @@
 	       common-extra-services 
 	       (modify-services %desktop-services
 				(delete gdm-service-type)
-				(guix-service-type config => (guix-config-with-substitutes config))))))))
+				(guix-service-type config => (guix-config-with-substitutes config))))))
+
+(define-public base-os-desktop
+  (operating-system
+   (inherit base-os)
+   (users (cons* conner-user-desktop %base-user-accounts))
+   (packages desktop-packages)
+   (services desktop-extra-services)))
