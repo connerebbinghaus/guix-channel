@@ -19,6 +19,7 @@
                                  "2c9faf91-40d3-489c-8fb8-a51faacb542b")))))
    (services (cons*
 	      (service libvirt-service-type)
+	      (service virtlog-service-type)
 	      desktop-extra-services))
 
    (file-systems (cons*
