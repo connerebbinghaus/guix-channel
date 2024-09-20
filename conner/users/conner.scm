@@ -37,6 +37,7 @@
   #:use-module (gnu packages shellutils)
   #:use-module (nongnu packages mozilla)
   #:use-module (nongnu packages game-client)
+  #:use-module (nongnu packages editors)
   #:use-module (sops packages sops)
   #:export (conner-user
 	    conner-user-desktop
@@ -56,13 +57,12 @@
    (inherit conner-user)
    (supplementary-groups (append (user-account-supplementary-groups conner-user) desktop-supplementary-groups))))
 
-
-
 (define-public %conner-packages
   (list
    file
    git direnv ripgrep
    emacs guile-3.0 emacs-guix emacs-geiser emacs-geiser-guile emacs-paredit emacs-magit emacs-envrc emacs-org
+   vscodium
    htop btop
    tmux
    gnupg pinentry-tty
