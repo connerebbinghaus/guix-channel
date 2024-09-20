@@ -63,6 +63,7 @@
    git direnv ripgrep
    emacs guile-3.0 emacs-guix emacs-geiser emacs-geiser-guile emacs-paredit emacs-magit emacs-envrc emacs-org
    vscodium
+   rust `(,rust "tools") `(,rust "cargo") `(,rust "rust-src")
    htop btop
    tmux
    gnupg pinentry-tty
