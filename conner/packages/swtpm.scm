@@ -61,7 +61,8 @@
 	      "0y9ar4z18ks69yq4d45nk6x7qyziqpfx231qd4jxjjpamr5npq91"))))
    (build-system gnu-build-system)
    (arguments
-    `(#:phases
+    `(#:configure-flags '("--with-openssl")
+      #:phases
           (modify-phases %standard-phases
 			 (add-after 'unpack 'fix-localca-path
 				    (lambda _
@@ -81,6 +82,7 @@
      python
      perl
      bash)) ; full bash needed for tests
+   (propagated-inputs (list gnutls)) ; for certtool
    (home-page "https://github.com/stefanberger/swtpm/wiki")
    (synopsis "Software TPM Emulator")
    (description "The SWTPM package provides TPM emulators with different front-end interfaces to libtpms. TPM emulators provide socket interfaces (TCP/IP and Unix) and the Linux CUSE interface for the creation of multiple native /dev/vtpm* devices.
