@@ -60,6 +60,13 @@
 	     (base32
 	      "0y9ar4z18ks69yq4d45nk6x7qyziqpfx231qd4jxjjpamr5npq91"))))
    (build-system gnu-build-system)
+   (arguments
+    `(#:phases
+          (modify-phases %standard-phases
+			 (add-after 'unpack 'fix-localca-path
+				    (lambda _
+				      (substitute* "samples/swtpm-localca.conf.in"
+						   (("@LOCALSTATEDIR@") "/var")))))))
    (inputs
     (list libtasn1 python-twisted fuse glib openssl json-glib libtpms gmp libseccomp))
    (native-inputs
