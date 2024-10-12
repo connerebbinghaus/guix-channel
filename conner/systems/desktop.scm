@@ -2,6 +2,7 @@
 (define-module (conner systems desktop)
   #:use-module (conner systems)
   #:use-module (conner users conner)
+  #:use-module (conner packages swtpm)
   #:use-module (gnu system)
   #:use-module (gnu system shadow)
   #:use-module (gnu packages kde-plasma)
@@ -24,7 +25,7 @@
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan bluedevil bluez-qt podman podman-compose %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan bluedevil bluez-qt podman podman-compose swtpm %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
