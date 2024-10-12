@@ -3,10 +3,8 @@
   #:use-module (conner systems desktop)
   #:use-module (guix gexp)
   #:use-module (gnu services)
-  #:use-module (gnu services virtualization)
   #:use-module (gnu system)
   #:use-module (gnu system file-systems)
-  #:use-module (gnu packages firmware)
   #:export (conner-pc-os))
 
 (define-public conner-pc-os
@@ -19,12 +17,6 @@
    (swap-devices (list (swap-space
                         (target (uuid
                                  "2c9faf91-40d3-489c-8fb8-a51faacb542b")))))
-   (services (cons*
-	      (service libvirt-service-type)
-	      (service virtlog-service-type)
-	      (extra-special-file "/usr/share/OVMF/OVMF_CODE.fd"
-                    (file-append ovmf-x86-64 "/share/firmware/ovmf_x64.bin"))
-	      desktop-extra-services))
 
    (file-systems (cons*
 		  tmp-tmpfs-file-system

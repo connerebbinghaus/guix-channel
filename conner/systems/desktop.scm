@@ -18,6 +18,9 @@
   #:use-module (gnu services cups)
   #:use-module (gnu services pm)
   #:use-module (gnu services xorg)
+  #:use-module (gnu services virtualization)
+  #:use-module (gnu packages firmware)
+  #:use-module (guix gexp)
   #:export (desktop-packages
 	    base-os-desktop))
 
@@ -34,6 +37,10 @@
 	      (service bluetooth-service-type)
 	      (udev-rules-service 'android android-udev-rules
 				  #:groups '("adbusers"))
+	      (service libvirt-service-type)
+	      (service virtlog-service-type)
+	      (extra-special-file "/usr/share/OVMF/OVMF_CODE.fd"
+                    (file-append ovmf-x86-64 "/share/firmware/ovmf_x64.bin"))
 	      (append
 	       common-extra-services 
 	       (modify-services %desktop-services
