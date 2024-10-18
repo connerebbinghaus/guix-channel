@@ -61,5 +61,6 @@
    (services desktop-extra-services)
    (privileged-programs
     (append (list (privileged-program
-                   (program (file-append spice-gtk "/libexec/spice-client-glib-usb-acl-helper"))))
+                   (program (file-append spice-gtk "/libexec/spice-client-glib-usb-acl-helper"))
+		   (setuid? #t)))
             %setuid-programs))))
