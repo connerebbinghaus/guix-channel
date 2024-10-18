@@ -29,6 +29,7 @@
   #:use-module (gnu packages virtualization)
   #:use-module (gnu packages dns)
   #:use-module (gnu packages wine)
+  #:use-module (gnu packages astronomy)
   #:use-module (nongnu packages wine)
   #:use-module (gnu services)
   #:use-module (guix gexp)
@@ -88,6 +89,7 @@
    gimp inkscape blender
    virt-manager
    wine winetricks
+   stellarium
    %conner-packages))
 
 (define-public conner-home
