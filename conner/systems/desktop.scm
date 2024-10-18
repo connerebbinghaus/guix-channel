@@ -6,12 +6,14 @@
   #:use-module (conner packages virtiofsd)
   #:use-module (gnu system)
   #:use-module (gnu system shadow)
+  #:use-module (gnu system privilege)
   #:use-module (gnu packages kde-plasma)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages scanner)
   #:use-module (gnu packages kde-frameworks)
   #:use-module (gnu packages containers)
   #:use-module (gnu packages android)
+  #:use-module (gnu packages spice)
   #:use-module (gnu services)
   #:use-module (gnu services base)
   #:use-module (gnu services guix)
@@ -21,6 +23,7 @@
   #:use-module (gnu services pm)
   #:use-module (gnu services xorg)
   #:use-module (gnu services virtualization)
+  #:use-module (gnu services dbus)
   #:use-module (gnu packages firmware)
   #:use-module (guix gexp)
   #:export (desktop-packages
@@ -42,7 +45,8 @@
 	      (service libvirt-service-type)
 	      (service virtlog-service-type)
 	      (extra-special-file "/usr/share/OVMF/OVMF_CODE.fd"
-                    (file-append ovmf-x86-64 "/share/firmware/ovmf_x64.bin"))
+				  (file-append ovmf-x86-64 "/share/firmware/ovmf_x64.bin"))
+	      (simple-service 'spice-polkit polkit-service-type (list spice-gtk))
 	      (append
 	       common-extra-services 
 	       (modify-services %desktop-services
@@ -54,4 +58,8 @@
    (inherit base-os)
    (users (cons* conner-user-desktop %base-user-accounts))
    (packages desktop-packages)
-   (services desktop-extra-services)))
+   (services desktop-extra-services)
+   (privileged-programs
+    (append (list (privileged-program
+                   (program (file-append spice-gtk "/libexec/spice-client-glib-usb-acl-helper"))))
+            %setuid-programs))))
