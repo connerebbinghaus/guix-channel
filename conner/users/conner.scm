@@ -27,6 +27,9 @@
   #:use-module (gnu packages graphics)
   #:use-module (gnu packages inkscape)
   #:use-module (gnu packages virtualization)
+  #:use-module (gnu packages dns)
+  #:use-module (gnu packages wine)
+  #:use-module (nongnu packages wine)
   #:use-module (gnu services)
   #:use-module (guix gexp)
   #:use-module (gnu home services)
@@ -65,7 +68,8 @@
    htop btop
    tmux
    gnupg pinentry-tty
-   sops))
+   sops
+   `(,isc-bind "utils")))
 
 (define-public %conner-packages-desktop
   (cons*
@@ -83,6 +87,7 @@
    keepassxc
    gimp inkscape blender
    virt-manager
+   wine winetricks
    %conner-packages))
 
 (define-public conner-home
@@ -104,8 +109,8 @@ export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
                     (ssh-support? #t)))
 	  (simple-service 'my-entire-configuration
 			  home-files-service-type
-			  (list `(".config"
-				  ,(local-file "files/.config" #:recursive? #t))))))))
+			  (list `(".config/emacs/init.el"
+				  ,(local-file "files/.config/emacs/init.el"))))))))
 
 (define-public conner-home-desktop
   (home-environment
