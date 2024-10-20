@@ -63,4 +63,4 @@
     (append (list (privileged-program
                    (program (file-append spice-gtk "/libexec/spice-client-glib-usb-acl-helper"))
 		   (setuid? #t)))
-            %setuid-programs))))
+            %default-privileged-programs))))
