@@ -279,14 +279,14 @@
 (define-public rust-virtiofsd-1
   (package
     (name "rust-virtiofsd")
-    (version "1.11.1")
+    (version "1.12.0")
     (source
      (origin
        (method url-fetch)
        (uri (crate-uri "virtiofsd" version))
        (file-name (string-append name "-" version ".tar.gz"))
        (sha256
-        (base32 "0hkncicrfv5bp008cjc2vnhqzj3y8z3l078aahydyv7icx1fpxhv"))))
+        (base32 "0nfb0r2jcinwjkl9ksx0zya70ckfv3nc0jggba2ra9g8a8hbhnj7"))))
     (build-system cargo-build-system)
     (arguments
      `(#:cargo-inputs (("rust-bitflags" ,rust-bitflags-1)

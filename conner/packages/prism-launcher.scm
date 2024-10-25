@@ -29,7 +29,7 @@
 (define-public prism-launcher
   (package
    (name "prism-launcher")
-   (version "8.4")
+   (version "9.1")
    (source (origin
 	    (method git-fetch)
 	    (uri (git-reference
@@ -39,17 +39,16 @@
 	    (file-name (git-file-name name version))
 	    (sha256
 	     (base32
-	      "07ngh55rqxslrs3q1qlydxavxcc39dmxsgqnlv7xmn13ci1n5vsr"))
+	      "0z3h8jff9vqyrqidfay82b0r1a87ia5skwapnq0hy05a197k9qkm"))
 	    (modules '((guix build utils)))
 	    (snippet '(for-each delete-file-recursively ; delete bundled libraries available in guix
 				(list "libraries/cmark"
 				      "libraries/extra-cmake-modules"
 				      "libraries/filesystem" ; gulrak-filesystem
 				      "libraries/quazip"
-				      "libraries/tomlplusplus" ; FIXME: something is wrong with guix's tomlplusplus, strange cmake errors
+				      "libraries/tomlplusplus"
 				      "libraries/zlib")))))
-   (arguments
-    `(;#:configure-flags '("-DLauncher_QT_VERSION_MAJOR=5") ; Use Qt5, guix's quazip uses it
+   (arguments '(
       #:phases
       (modify-phases %standard-phases ; Taken from https://gitlab.com/guix-gaming-channels/games/-/blob/66fe8b72d114ee2de218fc46d0f7ad95d8b3129e/games/packages/minecraft.scm
 		     (add-after 'install 'patch-paths
@@ -78,10 +77,11 @@
      qtbase
      qt5compat
      qtwayland
+     qtnetworkauth
      cmark
      gulrak-filesystem
      quazip-qt6
-     tomlplusplus ; FIXME
+     tomlplusplus
      zlib
      mesa
      libx11
@@ -92,7 +92,7 @@
      pulseaudio
      mesa
      xrandr))
-(propagated-inputs (list `(,openjdk17 "jdk")))
+   (propagated-inputs (list `(,openjdk17 "jdk")))
    (home-page "https://prismlauncher.org/")
    (synopsis "Custom launcher for Minecraft")
    (description "Prism Launcher is a custom launcher for Minecraft that allows you to easily manage multiple installations of Minecraft at once.")
