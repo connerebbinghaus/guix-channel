@@ -14,6 +14,7 @@
   #:use-module (gnu packages containers)
   #:use-module (gnu packages android)
   #:use-module (gnu packages spice)
+  #:use-module (gnu packages docker)
   #:use-module (gnu services)
   #:use-module (gnu services base)
   #:use-module (gnu services guix)
@@ -24,12 +25,13 @@
   #:use-module (gnu services xorg)
   #:use-module (gnu services virtualization)
   #:use-module (gnu services dbus)
+  #:use-module (gnu services docker)
   #:use-module (gnu packages firmware)
   #:use-module (guix gexp)
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan bluedevil bluez-qt podman podman-compose swtpm rust-virtiofsd-1 %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan bluedevil bluez-qt docker docker-compose swtpm rust-virtiofsd-1 %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
@@ -44,6 +46,8 @@
 				  #:groups '("adbusers"))
 	      (service libvirt-service-type)
 	      (service virtlog-service-type)
+	      (service containerd-service-type)
+	      (service docker-service-type)
 	      (extra-special-file "/usr/share/OVMF/OVMF_CODE.fd"
 				  (file-append ovmf-x86-64 "/share/firmware/ovmf_x64.bin"))
 	      (simple-service 'spice-polkit polkit-service-type (list spice-gtk))
