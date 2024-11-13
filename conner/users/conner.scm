@@ -30,6 +30,9 @@
   #:use-module (gnu packages dns)
   #:use-module (gnu packages wine)
   #:use-module (gnu packages astronomy)
+  #:use-module (gnu packages fonts)
+  #:use-module (gnu packages video)
+  #:use-module (gnu packages tor-browsers)
   #:use-module (nongnu packages wine)
   #:use-module (gnu services)
   #:use-module (guix gexp)
@@ -74,7 +77,7 @@
 
 (define-public %conner-packages-desktop
   (cons*
-   firefox
+   firefox torbrowser
    vscodium
    ark
    kate okular gwenview
@@ -90,6 +93,8 @@
    virt-manager
    wine winetricks
    stellarium
+   font-google-noto font-google-noto-serif-cjk font-google-noto-sans-cjk font-google-noto-emoji
+   mpv
    %conner-packages))
 
 (define-public conner-home
