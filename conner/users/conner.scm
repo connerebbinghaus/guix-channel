@@ -33,6 +33,8 @@
   #:use-module (gnu packages fonts)
   #:use-module (gnu packages video)
   #:use-module (gnu packages tor-browsers)
+  #:use-module (gnu packages aspell)
+  #:use-module (gnu packages tex)
   #:use-module (nongnu packages wine)
   #:use-module (gnu services)
   #:use-module (guix gexp)
@@ -81,7 +83,7 @@
    vscodium
    ark
    kate okular gwenview
-   texlive emacs-auctex
+   texlive texlive-biber aspell aspell-dict-en emacs-auctex
    freecad
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
    prusa-slicer
