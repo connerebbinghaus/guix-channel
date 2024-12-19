@@ -70,7 +70,7 @@
   (list
    file
    git direnv ripgrep
-   emacs guile-3.0 emacs-guix emacs-geiser emacs-geiser-guile emacs-paredit emacs-magit emacs-envrc emacs-org emacs-lsp-mode emacs-lsp-ui emacs-flycheck
+   emacs guile-3.0 emacs-guix emacs-geiser emacs-geiser-guile emacs-paredit emacs-magit emacs-envrc emacs-org emacs-lsp-mode emacs-lsp-ui emacs-flycheck emacs-company
    htop btop
    tmux
    gnupg pinentry-tty
