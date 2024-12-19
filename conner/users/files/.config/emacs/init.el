@@ -5,3 +5,4 @@
   (add-to-list 'geiser-guile-load-path "~/Projects/sops-guix")
   (add-to-list 'geiser-guile-load-path "~/Projects/guix-surface"))
   
+(add-hook 'after-init-hook 'envrc-global-mode)
