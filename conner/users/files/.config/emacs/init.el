@@ -21,21 +21,19 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (rust-mode . lsp-deferred)
-	 (cpp-mode . lsp-deferred)
-	 :commands (lsp lsp-deferred)))
+	 (cpp-mode . lsp-deferred))
+  :commands (lsp lsp-deferred))
 
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 (use-package flycheck
-  :ensure t
   :init (global-flycheck-mode))
 
 (use-package company
   :hook (prog-mode . company-mode))
 
 (use-package doom-modeline
-  :ensure t
   :hook (after-init . doom-modeline-mode))
 
 (add-hook 'after-init-hook (lambda () (load-theme 'tango-dark)))
