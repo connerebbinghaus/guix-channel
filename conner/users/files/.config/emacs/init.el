@@ -11,3 +11,4 @@
 (global-flycheck-mode +1)
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'after-init-hook 'envrc-global-mode)
+(add-hook 'after-init-hook (lambda () (load-theme 'tango-dark)))
