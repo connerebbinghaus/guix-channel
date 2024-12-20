@@ -2,26 +2,49 @@
 ;;; Commentary:
 ;;; Emacs Startup File --- initialization for Emacs
 ;;; Code:
-(require 'lsp-mode)
-(require 'flycheck)
-(require 'doom-modeline)
-(require 'geiser)
+(eval-when-compile
+  (require 'use-package))
 
 (cua-mode t)
+
+
+(use-package geiser-guile)
 (with-eval-after-load 'geiser-guile
   (add-to-list 'geiser-guile-load-path "~/Projects/guix")
   (add-to-list 'geiser-guile-load-path "~/Projects/nonguix")
   (add-to-list 'geiser-guile-load-path "~/Projects/sops-guix/modules")
   (add-to-list 'geiser-guile-load-path "~/Projects/guix-surface"))
 
-(add-hook 'rust-mode-hook #'lsp-deferred)
-(add-hook 'cpp-mode-hook #'lsp-deferred)
+(use-package treemacs)
 
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'after-init-hook 'global-company-mode)
-(add-hook 'after-init-hook 'envrc-global-mode)
-(add-hook 'after-init-hook #'doom-modeline-mode)
+(treemacs-start-on-boot)
+
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (rust-mode . lsp-deferred)
+	 (cpp-mode . lsp-deferred)
+	 :commands (lsp lsp-deferred)))
+
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package company
+  :hook (prog-mode . company-mode))
+
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
+
 (add-hook 'after-init-hook (lambda () (load-theme 'tango-dark)))
+
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
 
 ;; Fake the footer to avoid warnings
 ;; (provide 'init)
