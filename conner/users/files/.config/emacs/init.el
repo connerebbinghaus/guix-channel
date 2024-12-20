@@ -7,7 +7,6 @@
 
 (cua-mode t)
 
-
 (use-package geiser-guile)
 (with-eval-after-load 'geiser-guile
   (add-to-list 'geiser-guile-load-path "~/Projects/guix")
@@ -15,9 +14,7 @@
   (add-to-list 'geiser-guile-load-path "~/Projects/sops-guix/modules")
   (add-to-list 'geiser-guile-load-path "~/Projects/guix-surface"))
 
-(use-package treemacs :commands (treemacs-start-on-boot treemacs))
-
-(treemacs-start-on-boot)
+(use-package treemacs :commands (treemacs))
 
 (use-package lsp-mode
   :init
