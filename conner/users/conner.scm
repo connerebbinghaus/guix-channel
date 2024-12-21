@@ -111,9 +111,8 @@
                     (guix-defaults? #t)
                     (bash-profile (list (plain-file "bash-profile" "\
 export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
-					;(bashrc (list(plain-file "bashrc-dotenv"  (string-append "\
-                                        ;eval \"$(" (which "direnv") " hook bash)\""))))))
-                    ))
+					(bashrc (list(plain-file "bashrc-dotenv"  (string-append "\
+                                        eval \"$(direnv hook bash)\""))))))
           (service home-gpg-agent-service-type
                    (home-gpg-agent-configuration
                     (pinentry-program
@@ -133,9 +132,8 @@ export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
                     (guix-defaults? #t)
                     (bash-profile (list (plain-file "bash-profile" "\
 export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
-					;(bashrc (list(plain-file "bashrc-dotenv"  (string-append "\
-                                        ;eval \"$(" (which "direnv") " hook bash)\""))))))
-                    ))
+					(bashrc (list(plain-file "bashrc-dotenv"  (string-append "\
+                                        eval \"$(direnv hook bash)\""))))))
           (service home-syncthing-service-type)
           (service home-gpg-agent-service-type
                    (home-gpg-agent-configuration
