@@ -73,7 +73,7 @@
    git direnv ripgrep
    emacs guile-3.0 emacs-guix emacs-geiser emacs-geiser-guile emacs-paredit emacs-magit emacs-envrc emacs-org emacs-lsp-mode emacs-lsp-ui emacs-flycheck emacs-company
    emacs-rustic tree-sitter-rust tree-sitter-bash tree-sitter-markdown tree-sitter-scheme tree-sitter-c tree-sitter-cpp tree-sitter-python tree-sitter-awk
-   tree-sitter-lua emacs-doom-modeline emacs-use-package emacs-treemacs emacs-lsp-treemacs
+   tree-sitter-lua emacs-doom-modeline emacs-use-package emacs-treemacs emacs-lsp-treemacs emacs-yasnippet emacs-yasnippet-snippets
    htop btop
    tmux
    gnupg pinentry-tty
