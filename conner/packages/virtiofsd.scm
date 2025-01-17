@@ -16,6 +16,7 @@
   #:use-module (gnu packages networking)
   #:use-module (gnu packages crates-io)
   #:use-module (gnu packages crates-windows)
+  #:use-module (gnu packages crates-check)
   #:use-module (gnu packages perl)
   #:use-module (gnu packages base)
   #:use-module (gnu packages multiprecision)
@@ -282,6 +283,29 @@
     (synopsis "Rust wrapper for libcap-ng")
     (description "This package provides Rust wrapper for libcap-ng.")
     (license (list license:asl2.0 license:bsd-3))))
+
+(define-public rust-mockalloc-macros-0.1
+  (package
+    (name "rust-mockalloc-macros")
+    (version "0.1.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (crate-uri "mockalloc-macros" version))
+       (file-name (string-append name "-" version ".tar.gz"))
+       (sha256
+        (base32 "0rgvsq34i9k0w7yclz894ibi5dxxwn21vhr2ywal3dnsmv6msmi3"))))
+    (build-system cargo-build-system)
+    (arguments
+     `(#:cargo-inputs (("rust-proc-macro2" ,rust-proc-macro2-1)
+                       ("rust-quote" ,rust-quote-1)
+                       ("rust-syn" ,rust-syn-1))))
+    (home-page "")
+    (synopsis "Procedural macro attribute for the mockalloc crate")
+    (description
+     "This package provides Procedural macro attribute for the mockalloc crate.")
+    (license (list license:expat license:asl2.0))))
+
 
 (define-public rust-mockalloc-0.1
   (package
