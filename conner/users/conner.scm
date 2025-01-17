@@ -104,7 +104,7 @@
   (home-environment
    (packages %conner-packages)
    (services
-    (list (service home-bash-service-type
+    (cons* (service home-bash-service-type
                    (home-bash-configuration
                     (guix-defaults? #t)
                     (bash-profile (list (plain-file "bash-profile" "\
@@ -120,13 +120,14 @@ export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
 	  (simple-service 'my-entire-configuration
 			  home-files-service-type
 			  (list `(".config/emacs/init.el"
-				  ,(local-file "files/.config/emacs/init.el"))))))))
+				  ,(local-file "files/.config/emacs/init.el"))))
+	  %base-home-services))))
 
 (define-public conner-home-desktop
   (home-environment
    (packages %conner-packages-desktop)
    (services
-    (list (service home-bash-service-type
+    (cons* (service home-bash-service-type
                    (home-bash-configuration
                     (guix-defaults? #t)
                     (bash-profile (list (plain-file "bash-profile" "\
@@ -143,6 +144,7 @@ export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
 	  (simple-service 'my-entire-configuration
 			  home-files-service-type
 			  (list `(".config/emacs/init.el"
-				  ,(local-file "files/.config/emacs/init.el"))))))))
+				  ,(local-file "files/.config/emacs/init.el"))))
+	  %base-home-services))))
   
   
