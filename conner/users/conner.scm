@@ -75,6 +75,7 @@
    tmux
    gnupg pinentry-tty
    sops
+   netcat
    `(,isc-bind "utils")))
 
 (define-public %conner-packages-desktop
