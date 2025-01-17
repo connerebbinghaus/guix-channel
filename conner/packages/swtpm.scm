@@ -23,7 +23,7 @@
 (define-public libtpms
   (package
    (name "libtpms")
-   (version "0.10.0")
+   (version "0.9.6")
    (source (origin
 	    (method git-fetch)
 	    (uri (git-reference
@@ -32,7 +32,7 @@
 	    (file-name (git-file-name name version))
 	    (sha256
 	     (base32
-	      "0nawrc09ahmb1hcxw58v79bwbm8v7xprg9r8nm78nl3wh9fkzav0"))))
+	      "0lzm8lm3spjjxrni6pr9vjxv4ggfi1ss4xpil6x4k07hwawdhr13"))))
    (build-system gnu-build-system)
    (arguments
     `(#:make-flags '("LDFLAGS_OS=-lc")))
@@ -49,7 +49,7 @@
 (define-public swtpm
   (package
    (name "swtpm")
-   (version "0.10.0")
+   (version "0.9.0")
    (source (origin
 	    (method git-fetch)
 	    (uri (git-reference
@@ -58,7 +58,7 @@
 	    (file-name (git-file-name name version))
 	    (sha256
 	     (base32
-	      "1kbxps7kmkd6dnnfv1rzz83bm6ks4pls4lcz0k9y92g0la2m6jk4"))))
+	      "0y9ar4z18ks69yq4d45nk6x7qyziqpfx231qd4jxjjpamr5npq91"))))
    (build-system gnu-build-system)
    (arguments
     `(#:configure-flags '("--with-openssl")

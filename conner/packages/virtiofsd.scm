@@ -58,8 +58,6 @@
        (sha256
         (base32 "0s0angigj4j81xyxr380jpqjx89p3qm1as2ks45lbjzq00ffc48p"))))
     (build-system cargo-build-system)
-    (arguments
-     `(#:skip-build? #t))
     (home-page "https://github.com/rust-vmm/vm-virtio")
     (synopsis "Rust FFI bindings to virtio generated using bindgen")
     (description
@@ -243,6 +241,27 @@
      "This package provides Raw FFI Bindings for the libseccomp Library.")
     (license (list license:expat license:asl2.0))))
 
+(define-public rust-libc-0.2
+  (package
+    (name "rust-libc")
+    (version "0.2.159")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (crate-uri "libc" version))
+       (file-name (string-append name "-" version ".tar.gz"))
+       (sha256
+        (base32 "1i9xpia0hn1y8dws7all8rqng6h3lc8ymlgslnljcvm376jrf7an"))))
+    (build-system cargo-build-system)
+    (arguments
+     `(#:skip-build? #t
+       #:cargo-inputs (("rust-rustc-std-workspace-core" ,rust-rustc-std-workspace-core-1))))
+    (home-page "https://github.com/rust-lang/libc")
+    (synopsis "Raw FFI bindings to platform libraries like libc.")
+    (description
+     "This package provides Raw FFI bindings to platform libraries like libc.")
+    (license (list license:expat license:asl2.0))))
+
 (define-public rust-capng-0.2
   (package
     (name "rust-capng")
@@ -263,28 +282,6 @@
     (synopsis "Rust wrapper for libcap-ng")
     (description "This package provides Rust wrapper for libcap-ng.")
     (license (list license:asl2.0 license:bsd-3))))
-
-(define-public rust-mockalloc-macros-0.1
-  (package
-    (name "rust-mockalloc-macros")
-    (version "0.1.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (crate-uri "mockalloc-macros" version))
-       (file-name (string-append name "-" version ".tar.gz"))
-       (sha256
-        (base32 "0rgvsq34i9k0w7yclz894ibi5dxxwn21vhr2ywal3dnsmv6msmi3"))))
-    (build-system cargo-build-system)
-    (arguments
-     `(#:cargo-inputs (("rust-proc-macro2" ,rust-proc-macro2-1)
-                       ("rust-quote" ,rust-quote-1)
-                       ("rust-syn" ,rust-syn-1))))
-    (home-page "")
-    (synopsis "Procedural macro attribute for the mockalloc crate")
-    (description
-     "This package provides Procedural macro attribute for the mockalloc crate.")
-    (license (list license:expat license:asl2.0))))
 
 (define-public rust-mockalloc-0.1
   (package
@@ -438,6 +435,7 @@ allocator.")
     (build-system cargo-build-system)
     (arguments
      `(#:cargo-inputs (("rust-bitflags" ,rust-bitflags-1)
+                       ("rust-btree-range-map" ,rust-btree-range-map-0.7)
                        ("rust-capng" ,rust-capng-0.2)
                        ("rust-clap" ,rust-clap-4)
                        ("rust-env-logger" ,rust-env-logger-0.8)
@@ -453,8 +451,8 @@ allocator.")
                        ("rust-virtio-bindings" ,rust-virtio-bindings-0.2)
                        ("rust-virtio-queue" ,rust-virtio-queue-0.14)
                        ("rust-vm-memory" ,rust-vm-memory-0.16)
-                       ("rust-vmm-sys-util" ,rust-vmm-sys-util-0.12)
-                       ("rust-rust-btree-range-map" ,rust-btree-range-map-0.7))))
+                       ("rust-vmm-sys-util" ,rust-vmm-sys-util-0.12))))
+
     (inputs (list libseccomp libcap-ng))
     (home-page "https://virtio-fs.gitlab.io/")
     (synopsis "virtio-fs vhost-user device daemon")

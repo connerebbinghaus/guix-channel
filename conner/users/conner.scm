@@ -35,7 +35,6 @@
   #:use-module (gnu packages tor-browsers)
   #:use-module (gnu packages aspell)
   #:use-module (gnu packages tex)
-  #:use-module (gnu packages tree-sitter)
   #:use-module (nongnu packages wine)
   #:use-module (gnu services)
   #:use-module (guix gexp)
@@ -71,9 +70,7 @@
   (list
    file
    git direnv ripgrep
-   emacs guile-3.0 emacs-guix emacs-geiser emacs-geiser-guile emacs-paredit emacs-magit emacs-envrc emacs-org emacs-lsp-mode emacs-lsp-ui emacs-flycheck emacs-company
-   emacs-rustic tree-sitter-rust tree-sitter-bash tree-sitter-markdown tree-sitter-scheme tree-sitter-c tree-sitter-cpp tree-sitter-python tree-sitter-awk
-   tree-sitter-lua emacs-doom-modeline emacs-use-package emacs-treemacs emacs-lsp-treemacs emacs-yasnippet emacs-yasnippet-snippets
+   emacs guile-3.0 emacs-guix emacs-geiser emacs-geiser-guile emacs-paredit emacs-magit emacs-envrc emacs-org
    htop btop
    tmux
    gnupg pinentry-tty
@@ -86,7 +83,7 @@
    vscodium
    ark
    kate okular gwenview
-   texlive texlive-biber aspell aspell-dict-en emacs-auctex tree-sitter-latex tree-sitter-bibtex
+   texlive texlive-biber aspell aspell-dict-en emacs-auctex
    freecad
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
    prusa-slicer
@@ -111,8 +108,9 @@
                     (guix-defaults? #t)
                     (bash-profile (list (plain-file "bash-profile" "\
 export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
-					(bashrc (list(plain-file "bashrc-dotenv"  (string-append "\
-                                        eval \"$(direnv hook bash)\""))))))
+					;(bashrc (list(plain-file "bashrc-dotenv"  (string-append "\
+                                        ;eval \"$(" (which "direnv") " hook bash)\""))))))
+                    ))
           (service home-gpg-agent-service-type
                    (home-gpg-agent-configuration
                     (pinentry-program
@@ -132,8 +130,9 @@ export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
                     (guix-defaults? #t)
                     (bash-profile (list (plain-file "bash-profile" "\
 export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
-					(bashrc (list(plain-file "bashrc-dotenv"  (string-append "\
-                                        eval \"$(direnv hook bash)\""))))))
+					;(bashrc (list(plain-file "bashrc-dotenv"  (string-append "\
+                                        ;eval \"$(" (which "direnv") " hook bash)\""))))))
+                    ))
           (service home-syncthing-service-type)
           (service home-gpg-agent-service-type
                    (home-gpg-agent-configuration
