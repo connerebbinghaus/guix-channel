@@ -94,7 +94,7 @@
    keepassxc
    gimp inkscape blender
    virt-manager
-   wine winetricks
+   wine64 winetricks
    stellarium
    font-google-noto font-google-noto-serif-cjk font-google-noto-sans-cjk font-google-noto-emoji
    mpv
