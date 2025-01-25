@@ -21,6 +21,8 @@
   ("@"             ""  "IN"  "NS"     "ns2.afraid.org.")
   ("nas"           ""  "IN"  "A"      "0.0.0.0") ;; Updated by DDNS
   ("nas"           ""  "IN"  "AAAA"   "2001:470:c07b::2")
+  ("git"           ""  "IN"  "CNAME"  "nas")
+  ("server"        ""  "IN"  "CNAME"  "nas")
   ("immich"        ""  "IN"  "CNAME"  "nas")
   ("homeassistant" ""  "IN"  "A"      "0.0.0.0") ;; Updated by DDNS
   ("router"        ""  "IN"  "A"      "0.0.0.0") ;; Updated by DDNS
@@ -36,7 +38,7 @@
    (domain "ebbingha.us")
    (zone (zone-file
 	  (origin "ebbingha.us")
-	  (serial 2024101800)
+	  (serial 2024082100)
 	  (entries ebbingha.us.zone)))
    (notify (list "afraid-slave"))
    (zonefile-sync -1)
@@ -57,7 +59,7 @@
 	  "proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;"
 	  "proxy_set_header Upgrade $http_upgrade;"
 	  "proxy_set_header Connection $connection_upgrade;"))))
-
+	  
 
 (define homeassistant-server
   (nginx-server-configuration
@@ -86,28 +88,28 @@
 		       (knot-configuration
 			(remotes (list afraid-slave))
 			(zones (list ebbingha-us-master-zone))))
-;	      (service nginx-service-type
-;		       (nginx-configuration
-;			(shepherd-requirement (list 'renew-certbot-certificates)) ; Need certificates set up
-;			(server-blocks (list homeassistant-server))
-;			(extra-content "\n
-;map $http_upgrade $connection_upgrade {
-;    default upgrade;
-;    ''      close;
-;}")))
-;	      (service certbot-service-type
-;		       (certbot-configuration
-;			(email "connerebbinghaus@gmail.com")
-;			(server "https://acme-staging-v02.api.letsencrypt.org/directory") ; for testing
-;			(certificates (list
-;				       (certificate-configuration
-;					(domains '("homeassistant.ebbingha.us")))))))
+	      (service nginx-service-type
+		       (nginx-configuration
+			(shepherd-requirement (list 'renew-certbot-certificates)) ; Need certificates set up
+			(server-blocks (list homeassistant-server))
+			(extra-content "\n
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}")))
+	      (service certbot-service-type
+		       (certbot-configuration
+			(email "connerebbinghaus@gmail.com")
+			(server "https://acme-staging-v02.api.letsencrypt.org/directory") ; for testing
+			(certificates (list
+				       (certificate-configuration
+					(domains '("homeassistant.ebbingha.us")))))))
 
 ;	      (service static-networking-service-type
 ;		       (list (static-networking
 ;			      (addresses
 ;			       (list (network-address
-;				      (device "enp5s0");
+;				      (device "enp5s0")
 ;				      (value "192.168.1.2/24"))))
 ;			      (routes
 ;			       (list (network-route
