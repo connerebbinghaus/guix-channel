@@ -43,6 +43,7 @@
   #:use-module (gnu home services shells)
   #:use-module (gnu home services syncthing)
   #:use-module (gnu home services gnupg)
+  #:use-module (gnu home services sound)
   #:use-module (guix build utils)
   #:use-module (gnu packages shellutils)
   #:use-module (nongnu packages mozilla)
@@ -136,7 +137,8 @@ eval \"$(direnv hook bash)\""))))))
 export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
 		    (bashrc (list (plain-file "bashrc-dotenv"  (string-append "\
 eval \"$(direnv hook bash)\""))))))
-          (service home-syncthing-service-type)
+           (service home-syncthing-service-type)
+	   (service home-pipewire-service-type)
           (service home-gpg-agent-service-type
                    (home-gpg-agent-configuration
                     (pinentry-program
