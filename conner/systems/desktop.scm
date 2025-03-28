@@ -15,6 +15,7 @@
   #:use-module (gnu packages android)
   #:use-module (gnu packages spice)
   #:use-module (gnu packages docker)
+  #:use-module (gnu packages cups)
   #:use-module (gnu services)
   #:use-module (gnu services base)
   #:use-module (gnu services guix)
@@ -31,7 +32,7 @@
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan bluedevil bluez-qt docker docker-compose swtpm rust-virtiofsd-1 %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer hplip-minimal sane-airscan bluedevil bluez-qt docker docker-compose swtpm rust-virtiofsd-1 %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
