@@ -32,7 +32,7 @@
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer hplip-minimal sane-airscan bluedevil bluez-qt docker docker-compose swtpm rust-virtiofsd-1 %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan bluedevil bluez-qt docker docker-compose swtpm rust-virtiofsd-1 %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
@@ -40,7 +40,9 @@
 	      (service sddm-service-type)
 	      (service cups-service-type
 		       (cups-configuration
-			(web-interface? #t)))
+			(web-interface? #t)
+			(extensions
+			 (list cups-filters epson-inkjet-printer-escpr hplip-minimal))))
 	      (service power-profiles-daemon-service-type)
 	      (service bluetooth-service-type)
 	      (udev-rules-service 'android android-udev-rules
