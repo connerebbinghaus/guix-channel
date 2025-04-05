@@ -11,12 +11,17 @@
   (operating-system
    (inherit base-os-desktop)
    (host-name "conner-laptop")
+   
    (mapped-devices (list (mapped-device
                           (source (uuid
                                    "cdafeeb3-6224-459b-a4e2-0e2f8634ca1c"))
                           (target "cryptroot")
                           (type luks-device-mapping))))
-
+   (kernel-arguments
+    (cons*
+     "resume=/dev/mapper/cryptroot"
+     "resume_offset=59461632"
+     (operating-system-user-kernel-arguments base-os-desktop)))
    (swap-devices (list (swap-space
 			(target "/swapfile")
 			(priority 0))))
