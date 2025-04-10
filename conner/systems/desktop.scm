@@ -29,6 +29,7 @@
   #:use-module (gnu services docker)
   #:use-module (gnu packages firmware)
   #:use-module (guix gexp)
+  #:use-module (nongnu packages printers)
   #:export (desktop-packages
 	    base-os-desktop))
 
@@ -42,7 +43,7 @@
 		       (cups-configuration
 			(web-interface? #t)
 			(extensions
-			 (list cups-filters epson-inkjet-printer-escpr hplip-minimal))))
+			 (list cups-filters epson-inkjet-printer-escpr hplip-minimal hplip-plugin))))
 	      (service power-profiles-daemon-service-type)
 	      (service bluetooth-service-type)
 	      (udev-rules-service 'android android-udev-rules
