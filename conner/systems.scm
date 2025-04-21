@@ -24,7 +24,6 @@
   (guix-configuration
    (inherit config)
    (discover? #t)
-   (privileged? #f)
    (substitute-urls
     (append (list "https://substitutes.nonguix.org")
 	    %default-substitute-urls))
