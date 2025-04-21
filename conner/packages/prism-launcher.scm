@@ -29,7 +29,7 @@
 (define-public prism-launcher
   (package
    (name "prism-launcher")
-   (version "9.1")
+   (version "9.4")
    (source (origin
 	    (method git-fetch)
 	    (uri (git-reference
@@ -39,7 +39,7 @@
 	    (file-name (git-file-name name version))
 	    (sha256
 	     (base32
-	      "0z3h8jff9vqyrqidfay82b0r1a87ia5skwapnq0hy05a197k9qkm"))
+	      "1xxgyx0z5r3hk3yk4gglbfwvq2qk1j9a0dkrv55j4vrlkni79nrm"))
 	    (modules '((guix build utils)))
 	    (snippet '(for-each delete-file-recursively ; delete bundled libraries available in guix
 				(list "libraries/cmark"
