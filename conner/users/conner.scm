@@ -36,6 +36,7 @@
   #:use-module (gnu packages aspell)
   #:use-module (gnu packages tex)
   #:use-module (gnu packages tree-sitter)
+  #:use-module (gnu packages gnuzilla)
   #:use-module (nongnu packages wine)
   #:use-module (gnu services)
   #:use-module (guix gexp)
@@ -103,6 +104,7 @@
    stellarium
    font-google-noto font-google-noto-serif-cjk font-google-noto-sans-cjk font-google-noto-emoji
    mpv
+   icedove/wayland
    %conner-packages))
 
 (define-public conner-home
