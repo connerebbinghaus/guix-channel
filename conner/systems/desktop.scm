@@ -27,6 +27,7 @@
   #:use-module (gnu services virtualization)
   #:use-module (gnu services dbus)
   #:use-module (gnu services docker)
+  #:use-module (gnu services networking)
   #:use-module (gnu packages firmware)
   #:use-module (guix gexp)
   #:export (desktop-packages
@@ -58,7 +59,11 @@
 	       common-extra-services 
 	       (modify-services %desktop-services
 				(delete gdm-service-type)
-				(guix-service-type config => (guix-config-with-substitutes config))))))
+				(guix-service-type config => (guix-config-with-substitutes config))
+				(network-manager-service-type config => (network-manager-configuration
+									 (dns "dnsmasq")
+									 (vpn-plugins (list network-manager-openconnect))))
+				))))
 
 (define-public base-os-desktop
   (operating-system
