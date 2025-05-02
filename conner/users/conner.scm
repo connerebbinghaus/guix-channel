@@ -1,6 +1,7 @@
 (define-module (conner users conner)
   #:use-module (conner users)
   #:use-module (conner packages prism-launcher)
+  #:use-module (conner packages vesta)
   #:use-module (gnu system shadow)
   #:use-module (gnu home)
   #:use-module (gnu packages)
@@ -105,6 +106,7 @@
    font-google-noto font-google-noto-serif-cjk font-google-noto-sans-cjk font-google-noto-emoji
    mpv
    icedove/wayland
+   vesta
    %conner-packages))
 
 (define-public conner-home
