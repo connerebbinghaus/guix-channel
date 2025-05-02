@@ -5,6 +5,7 @@
   #:use-module (guix packages)
   #:use-module (guix download)
   #:use-module (nonguix build-system binary)
+  #:use-module (gnu packages base)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages glib)
@@ -13,7 +14,9 @@
   #:use-module (gnu packages fontutils)
   #:use-module (gnu packages polkit)
   #:use-module (gnu packages pulseaudio)
-  #:use-module (gnu packages xorg))
+  #:use-module (gnu packages xorg)
+  #:use-module (gnu packages package-management)
+  #:use-module (gnu packages cpio))
 
 (define-public vesta
   (package
@@ -21,14 +24,15 @@
    (version "3.5.8")
    (source (origin
 	    (method url-fetch)
-	    (uri (string-append "https://jp-minerals.org/vesta/archives/" version "/VESTA-gtk3.tar.bz2"))
+	    (uri (string-append "https://jp-minerals.org/vesta/archives/" version "/vesta-" version "-1.x86_64.rpm"))
 	    (sha256
 	     (base32
-	      "1y4dhqhk0jy7kbkkx2c6lsrm5lirn796mq67r5j1s7xkq8jz1gkq"))))
+	      "115zhz2r672apn88kwf8hs94cidksqq273v9bnrgb36npkc559f2"))))
    (build-system binary-build-system)
    (arguments
-     `(#:patchelf-plan
-       `(("VESTA-gui" ("atk"
+    `(#:substitutable? #f
+      #:patchelf-plan
+      `((,(string-append "usr/local/vesta-" ,version "/VESTA-gui") ("atk"
                      "cairo"
                      "fontconfig"
                      "freetype"
@@ -55,11 +59,30 @@
                      "mesa"
                      "pango"
                      "pangox-compat"))
-	 ("VESTA" ("gcc:lib"))
-	 ("VESTA-core" ("gcc:lib"))
-	 ("libVESTA.so" ("gcc:lib")))))
+	 (,(string-append "usr/local/vesta-" ,version "/VESTA") ("gcc:lib" "glibc"))
+	 (,(string-append "usr/local/vesta-" ,version "/VESTA-core") ("gcc:lib"))
+	 (,(string-append "usr/local/vesta-" ,version "/libVESTA.so") ("gcc:lib")))
+      #:install-plan `(("usr/" "./"))
+      #:modules ((guix build utils)
+                  (nonguix build utils)
+                  (nonguix build binary-build-system))
+      #:phases
+      (modify-phases %standard-phases
+		     (replace 'unpack
+			      (lambda* (#:key source #:allow-other-keys)
+				(system (format #f "rpm2cpio ~a | cpio -idmv" source))
+				#t))
+		     (add-after 'install 'symlink-lib
+				(lambda* (#:key outputs #:allow-other-keys)
+				  (let* ((out (assoc-ref outputs "out"))
+				    (bin (string-append out "/local/vesta-" ,version "/VESTA"))
+				    (link (string-append out "/bin/VESTA")))
+				    (delete-file link)
+				    (symlink bin link))
+				#t)))))
    (inputs
-     `(("atk" ,atk)
+    `(("glibc" ,glibc)
+      ("atk" ,atk)
        ("cairo" ,cairo)
        ("fontconfig" ,fontconfig)
        ("freetype" ,freetype)
@@ -87,7 +110,10 @@
        ("mesa" ,mesa)
        ("pango" ,pango)
        ("pangox-compat" ,pangox-compat)))
-    (supported-systems '("x86_64-linux"))
+   (supported-systems '("x86_64-linux"))
+   (native-inputs
+     `(("rpm" ,rpm)
+       ("cpio" ,cpio)))
    (home-page "https://github.com/stefanberger/swtpm/wiki")
    (synopsis "Visualization for Electronic and Structual Analysis")
    (description "VESTA is a 3D visualization program for structural models, volumetric data such as electron/nuclear densities, and crystal morphologies.")
