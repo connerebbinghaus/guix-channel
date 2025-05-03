@@ -72,13 +72,17 @@
 			      (lambda* (#:key source #:allow-other-keys)
 				(system (format #f "rpm2cpio ~a | cpio -idmv" source))
 				#t))
-		     (add-after 'install 'symlink-lib
+		     (add-after 'install 'fix-symlinks
 				(lambda* (#:key outputs #:allow-other-keys)
-				  (let* ((out (assoc-ref outputs "out"))
-				    (bin (string-append out "/local/vesta-" ,version "/VESTA"))
-				    (link (string-append out "/bin/VESTA")))
-				    (delete-file link)
-				    (symlink bin link))
+				  (let* ((out (assoc-ref outputs "out")))
+				    (for-each (lambda (sym)
+						(let* ((old-link-dest (readlink sym))
+						       (old-link-dest-trimmed (if (string-prefix? "/usr" old-link-dest) (string-drop old-link-dest 4) old-link-dest))
+						       (new-link-dest (canonicalize-path (string-append (assoc-ref outputs "out") "/" old-link-dest-trimmed))))
+						  (format #t "Fixing symlink: ~a~%" sym)
+						  (delete-file sym)
+						  (symlink new-link-dest sym)))
+					      (find-files out (lambda (file stat) (symbolic-link? file)) #:stat lstat)))
 				#t)))))
    (inputs
     `(("glibc" ,glibc)
