@@ -39,6 +39,7 @@
   #:use-module (gnu packages tree-sitter)
   #:use-module (gnu packages gnuzilla)
   #:use-module (nongnu packages wine)
+  #:use-module (nongnu packages productivity)
   #:use-module (gnu services)
   #:use-module (guix gexp)
   #:use-module (gnu home services)
@@ -107,6 +108,7 @@
    mpv
    icedove/wayland
    vesta
+   zotero
    %conner-packages))
 
 (define-public conner-home
