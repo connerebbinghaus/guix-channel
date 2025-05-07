@@ -38,6 +38,7 @@
   #:use-module (gnu packages tex)
   #:use-module (gnu packages tree-sitter)
   #:use-module (gnu packages gnuzilla)
+  #:use-module (gnu packages python-xyz)
   #:use-module (nongnu packages wine)
   #:use-module (nongnu packages productivity)
   #:use-module (gnu services)
@@ -78,7 +79,7 @@
    git direnv ripgrep
    emacs guile-3.0 emacs-guix emacs-geiser emacs-geiser-guile emacs-paredit emacs-magit emacs-envrc emacs-org emacs-lsp-mode emacs-lsp-ui emacs-flycheck emacs-company
    emacs-rustic tree-sitter-rust tree-sitter-bash tree-sitter-markdown tree-sitter-scheme tree-sitter-c tree-sitter-cpp tree-sitter-python tree-sitter-awk
-   tree-sitter-lua emacs-doom-modeline emacs-use-package emacs-treemacs emacs-lsp-treemacs emacs-yasnippet emacs-yasnippet-snippets
+   tree-sitter-lua emacs-doom-modeline emacs-use-package emacs-treemacs emacs-lsp-treemacs emacs-yasnippet emacs-yasnippet-snippets python-lsp-server
    htop btop
    tmux
    gnupg pinentry-tty

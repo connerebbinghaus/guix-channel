@@ -21,7 +21,8 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (rust-mode . lsp-deferred)
-	 (cpp-mode . lsp-deferred))
+	 (cpp-mode . lsp-deferred)
+	 (python-mode . lsp-deferred))
   :commands (lsp lsp-deferred))
 
 (use-package yasnippet
