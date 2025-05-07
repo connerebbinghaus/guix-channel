@@ -39,6 +39,7 @@
   #:use-module (gnu packages tree-sitter)
   #:use-module (gnu packages gnuzilla)
   #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages package-management)
   #:use-module (nongnu packages wine)
   #:use-module (nongnu packages productivity)
   #:use-module (gnu services)
@@ -110,6 +111,7 @@
    icedove/wayland
    vesta
    zotero
+   flatpak
    %conner-packages))
 
 (define-public conner-home
