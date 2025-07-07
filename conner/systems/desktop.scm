@@ -30,10 +30,11 @@
   #:use-module (gnu services networking)
   #:use-module (gnu packages firmware)
   #:use-module (guix gexp)
+  #:use-module (nongnu packages firmware)
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan bluedevil bluez-qt docker docker-compose swtpm rust-virtiofsd-1 %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan bluedevil bluez-qt docker docker-compose swtpm rust-virtiofsd-1 fwupd-nonfree %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
