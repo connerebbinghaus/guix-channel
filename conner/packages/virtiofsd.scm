@@ -20,6 +20,8 @@
   #:use-module (gnu packages multiprecision)
   #:use-module (gnu packages admin))
 
+(define rust-ordered-float-3 rust-ordered-float-3.9.2)
+
 (define-public rust-virtio-queue-0.14
   (package
     (name "rust-virtio-queue")
