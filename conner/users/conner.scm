@@ -41,6 +41,7 @@
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages package-management)
   #:use-module (gnu packages gnome)
+  #:use-module (gnu packages education)
   #:use-module (nongnu packages wine)
   #:use-module (nongnu packages productivity)
   #:use-module (gnu services)
@@ -87,6 +88,8 @@
    gnupg pinentry-tty
    sops
    netcat
+   kdeconnect
+   anki
    `(,isc-bind "utils")))
 
 (define-public %conner-packages-desktop
