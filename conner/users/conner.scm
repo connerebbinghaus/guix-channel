@@ -42,6 +42,7 @@
   #:use-module (gnu packages package-management)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages education)
+  #:use-module (gnu packages cups)
   #:use-module (nongnu packages wine)
   #:use-module (nongnu packages productivity)
   #:use-module (gnu services)
@@ -116,6 +117,7 @@
    vesta
    zotero
    flatpak
+   cups
    %conner-packages))
 
 (define-public conner-home
