@@ -99,7 +99,7 @@
    vscodium
    ark
    kate okular gwenview
-   texlive texlive-biber aspell aspell-dict-en emacs-auctex tree-sitter-latex tree-sitter-bibtex
+   aspell aspell-dict-en ;;texlive texlive-biber emacs-auctex tree-sitter-latex tree-sitter-bibtex
    freecad
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
    prusa-slicer
