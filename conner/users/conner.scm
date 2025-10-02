@@ -18,6 +18,7 @@
   #:use-module (gnu packages tmux)
   #:use-module (gnu packages kde)
   #:use-module (gnu packages kde-utils)
+  #:use-module (gnu packages kde-internet)
   #:use-module (gnu packages engineering)
   #:use-module (gnu packages libreoffice)
   #:use-module (gnu packages scanner)
