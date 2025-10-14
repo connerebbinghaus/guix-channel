@@ -91,7 +91,6 @@
    sops
    netcat
    kdeconnect
-   anki
    `(,isc-bind "utils")))
 
 (define-public %conner-packages-desktop
