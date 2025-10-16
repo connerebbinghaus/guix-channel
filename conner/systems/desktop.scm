@@ -16,6 +16,7 @@
   #:use-module (gnu packages spice)
   #:use-module (gnu packages docker)
   #:use-module (gnu packages cups)
+  #:use-module (gnu packages printers)
   #:use-module (gnu services)
   #:use-module (gnu services base)
   #:use-module (gnu services guix)
@@ -34,7 +35,7 @@
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan bluedevil bluez-qt docker docker-compose swtpm virtiofsd fwupd-nonfree %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb bluedevil bluez-qt docker docker-compose swtpm virtiofsd fwupd-nonfree %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
