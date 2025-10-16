@@ -50,6 +50,7 @@
 	      (service bluetooth-service-type)
 	      (udev-rules-service 'android android-udev-rules
 				  #:groups '("adbusers"))
+	      (udev-rules-service 'ipp-usb ipp-usb)
 	      (service libvirt-service-type)
 	      (service virtlog-service-type)
 	      (service containerd-service-type)
