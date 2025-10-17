@@ -27,12 +27,4 @@
     (channel-introduction
      (version 0)
      (commit "9d0cdec8faa1450afc6f437c088bc8929ccdc0a3")
-     (signer "12F3 9DE4 3608 FC37 F146 407A 8386 A528 1605 3118"))))
-  (channel
-   (name rustup)
-   (url "https://github.com/declantsien/guix-rustup")
-   (introduction
-    (channel-introduction
-     (version 0)
-     (commit "325d3e2859d482c16da21eb07f2c6ff9c6c72a80")
-     (signer "F695 F39E C625 E081 33B5  759F 0FC6 8703 75EF E2F5"))))))
+     (signer "12F3 9DE4 3608 FC37 F146 407A 8386 A528 1605 3118"))))))
