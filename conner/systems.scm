@@ -38,7 +38,6 @@
 (define-public common-extra-services
   (list
    (service openssh-service-type)
-   (service avahi-service-type)
    (service zram-device-service-type (zram-device-configuration
                                       (size "8G")
                                       (priority 32766)))
