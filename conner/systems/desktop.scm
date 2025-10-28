@@ -17,6 +17,7 @@
   #:use-module (gnu packages docker)
   #:use-module (gnu packages cups)
   #:use-module (gnu packages printers)
+  #:use-module (nongnu packages printers)
   #:use-module (gnu services)
   #:use-module (gnu services base)
   #:use-module (gnu services guix)
@@ -32,25 +33,28 @@
   #:use-module (gnu packages firmware)
   #:use-module (guix gexp)
   #:use-module (nongnu packages firmware)
+  #:use-module (nongnu packages printers)
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb bluedevil bluez-qt docker docker-compose swtpm virtiofsd fwupd-nonfree %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin bluedevil bluez-qt docker docker-compose swtpm virtiofsd fwupd-nonfree %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
 	      (service plasma-desktop-service-type)
-	      (service sddm-service-type)
+	      (service sddm-service-type
+		       (sddm-configuration
+			(display-server "wayland")
+			(theme "breeze")))
 	      (service cups-service-type
 		       (cups-configuration
 			(web-interface? #t)
 			(extensions
-			 (list cups-filters epson-inkjet-printer-escpr hplip-minimal))))
+			 (list brlaser cups-filters epson-inkjet-printer-escpr foomatic-filters hplip-minimal splix hplip-plugin))))
 	      (service power-profiles-daemon-service-type)
 	      (service bluetooth-service-type)
 	      (udev-rules-service 'android android-udev-rules
 				  #:groups '("adbusers"))
-	      (udev-rules-service 'ipp-usb ipp-usb)
 	      (service libvirt-service-type)
 	      (service virtlog-service-type)
 	      (service containerd-service-type)
@@ -58,6 +62,7 @@
 	      (extra-special-file "/usr/share/OVMF/OVMF_CODE.fd"
 				  (file-append ovmf-x86-64 "/share/firmware/ovmf_x64.bin"))
 	      (simple-service 'spice-polkit polkit-service-type (list spice-gtk))
+	      (simple-service 'fwupd-dbus dbus-root-service-type (list fwupd-nonfree))
 	      (append
 	       common-extra-services 
 	       (modify-services %desktop-services

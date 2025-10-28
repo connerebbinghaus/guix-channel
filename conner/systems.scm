@@ -7,6 +7,7 @@
   #:use-module (gnu services guix)
   #:use-module (gnu services linux)
   #:use-module (gnu services ssh)
+  #:use-module (gnu services avahi)
   #:use-module (gnu system)
   #:use-module (gnu system file-systems)
   #:use-module (gnu system keyboard)
@@ -37,6 +38,7 @@
 (define-public common-extra-services
   (list
    (service openssh-service-type)
+   (service avahi-service-type)
    (service zram-device-service-type (zram-device-configuration
                                       (size "8G")
                                       (priority 32766)))
