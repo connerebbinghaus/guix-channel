@@ -44,7 +44,7 @@
 	      (service plasma-desktop-service-type)
 	      (service sddm-service-type
 		       (sddm-configuration
-			(display-server "wayland")
+			;; (display-server "wayland")
 			(theme "breeze")))
 	      (service cups-service-type
 		       (cups-configuration
