@@ -108,7 +108,7 @@
    prism-launcher steam heroic
    keepassxc
    gimp inkscape blender
-   ;;virt-manager
+   virt-manager
    wine64 winetricks
    stellarium
    font-google-noto font-google-noto-serif-cjk font-google-noto-sans-cjk font-google-noto-emoji
@@ -118,6 +118,7 @@
    zotero
    flatpak
    cups
+   anki
    %conner-packages))
 
 (define-public conner-home
