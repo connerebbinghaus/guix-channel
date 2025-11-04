@@ -90,7 +90,6 @@
    gnupg pinentry-tty
    sops
    netcat
-   kdeconnect
    `(,isc-bind "utils")))
 
 (define-public %conner-packages-desktop
@@ -119,6 +118,7 @@
    flatpak
    cups
    anki
+   kdeconnect
    %conner-packages))
 
 (define-public conner-home
@@ -167,7 +167,9 @@ eval \"$(direnv hook bash)\""))))))
 			   (list `(".config/emacs/init.el"
 				   ,(local-file "files/.config/emacs/init.el"))))
 	   (simple-service 'my-env-vars home-environment-variables-service-type
-		`(("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:$XDG_DATA_HOME/flatpak/exports/share/")))
+			   `(("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:$XDG_DATA_HOME/flatpak/exports/share/")
+			     ("QT_PLUGIN_PATH" . "$QT_PLUGIN_PATH:$HOME/.guix-home/profile/lib/qt6/plugins")
+			     ("QML_IMPORT_PATH" . "$QML_IMPORT_PATH:$HOME/.guix-home/profile/lib/qt6/qml")))
 	   %base-home-services))))
   
   
