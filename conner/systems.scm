@@ -16,6 +16,7 @@
   #:use-module (guix gexp)
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
+  #:use-module (gnu system nss)
   #:export (guix-config-with-substitutes
 	    common-extra-services
 	    tmp-tmpfs-file-system
@@ -72,4 +73,5 @@
                 (bootloader grub-efi-bootloader)
                 (targets (list "/boot/efi"))
                 (keyboard-layout keyboard-layout)))
+   (name-service-switch %mdns-host-lookup-nss) 
    (file-systems '())))
