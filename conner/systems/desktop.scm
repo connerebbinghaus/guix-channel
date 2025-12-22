@@ -37,7 +37,7 @@
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt docker docker-compose swtpm virtiofsd fwupd-nonfree %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
