@@ -170,7 +170,7 @@ eval \"$(direnv hook bash)\""))))))
 			   `(("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:$XDG_DATA_HOME/flatpak/exports/share/")
 			     ("QT_PLUGIN_PATH" . "$QT_PLUGIN_PATH:$HOME/.guix-home/profile/lib/qt6/plugins")
 			     ("QML_IMPORT_PATH" . "$QML_IMPORT_PATH:$HOME/.guix-home/profile/lib/qt6/qml")
-			     ("PRISMLAUNCHER_JAVA_PATHS" . ,(string-join (list #$icedtea-8 #$openjdk11 #$openjdk16 #$openjdk17 #$openjdk21 #$openjdk) ":"))))
+			     ("PRISMLAUNCHER_JAVA_PATHS" . ,#~(string-join (list #$icedtea-8 #$openjdk11 #$openjdk16 #$openjdk17 #$openjdk21 #$openjdk) ":"))))
 	   %base-home-services))))
   
   
