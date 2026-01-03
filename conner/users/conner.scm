@@ -103,7 +103,7 @@
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
    prusa-slicer
    libreoffice simple-scan ;; xsane
-   openjdk21
+   openjdk
    prism-launcher steam heroic
    keepassxc
    gimp inkscape blender
@@ -169,7 +169,8 @@ eval \"$(direnv hook bash)\""))))))
 	   (simple-service 'my-env-vars home-environment-variables-service-type
 			   `(("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:$XDG_DATA_HOME/flatpak/exports/share/")
 			     ("QT_PLUGIN_PATH" . "$QT_PLUGIN_PATH:$HOME/.guix-home/profile/lib/qt6/plugins")
-			     ("QML_IMPORT_PATH" . "$QML_IMPORT_PATH:$HOME/.guix-home/profile/lib/qt6/qml")))
+			     ("QML_IMPORT_PATH" . "$QML_IMPORT_PATH:$HOME/.guix-home/profile/lib/qt6/qml")
+			     ("PRISMLAUNCHER_JAVA_PATHS" . (apply string-append* ":" (list #$icedtea-8 #$openjdk11 #$openjdk16 #$openjdk17 #$openjdk21 #$openjdk)))))
 	   %base-home-services))))
   
   
