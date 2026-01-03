@@ -167,10 +167,10 @@ eval \"$(direnv hook bash)\""))))))
 			   (list `(".config/emacs/init.el"
 				   ,(local-file "files/.config/emacs/init.el"))))
 	   (simple-service 'my-env-vars home-environment-variables-service-type
-			    (list ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:$XDG_DATA_HOME/flatpak/exports/share/")
-				  ("QT_PLUGIN_PATH" . "$QT_PLUGIN_PATH:$HOME/.guix-home/profile/lib/qt6/plugins")
-				  ("QML_IMPORT_PATH" . "$QML_IMPORT_PATH:$HOME/.guix-home/profile/lib/qt6/qml")
-				  ("PRISMLAUNCHER_JAVA_PATHS" . (apply string-append* ":" (list #$icedtea-8 #$openjdk11 #$openjdk16 #$openjdk17 #$openjdk21 #$openjdk)))))
+			   `(("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:$XDG_DATA_HOME/flatpak/exports/share/")
+			     ("QT_PLUGIN_PATH" . "$QT_PLUGIN_PATH:$HOME/.guix-home/profile/lib/qt6/plugins")
+			     ("QML_IMPORT_PATH" . "$QML_IMPORT_PATH:$HOME/.guix-home/profile/lib/qt6/qml")
+			     ("PRISMLAUNCHER_JAVA_PATHS" . ,(apply string-append* ":" (list #$icedtea-8 #$openjdk11 #$openjdk16 #$openjdk17 #$openjdk21 #$openjdk)))))
 	   %base-home-services))))
   
   
