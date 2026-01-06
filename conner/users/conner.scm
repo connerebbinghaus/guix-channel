@@ -117,7 +117,7 @@
    zotero
    flatpak
    cups
-   anki
+   ;anki
    kdeconnect
    %conner-packages))
 
