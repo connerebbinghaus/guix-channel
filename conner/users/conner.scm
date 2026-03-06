@@ -59,7 +59,6 @@
   #:use-module (nongnu packages mozilla)
   #:use-module (nongnu packages game-client)
   #:use-module (nongnu packages editors)
-  #:use-module (sops packages sops)
   #:export (conner-user
 	    conner-user-desktop
 	    conner-home
@@ -88,7 +87,6 @@
    htop btop
    tmux
    gnupg pinentry-tty
-   sops
    netcat
    `(,isc-bind "utils")))
 
