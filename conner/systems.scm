@@ -27,7 +27,7 @@
    (inherit config)
    (discover? #t)
    (substitute-urls
-    (append (list "https://substitutes.nonguix.org")
+    (append (list "https://bordeaux-us-east-mirror.cbaines.net" "https://substitutes.nonguix.org")
 	    %default-substitute-urls))
    (authorized-keys
     (append (list (plain-file "non-guix.pub"
