@@ -62,7 +62,6 @@
 	      (extra-special-file "/usr/share/OVMF/OVMF_CODE.fd"
 				  (file-append ovmf-x86-64 "/share/firmware/ovmf_x64.bin"))
 	      (simple-service 'spice-polkit polkit-service-type (list spice-gtk))
-	      (simple-service 'fwupd-dbus dbus-root-service-type (list fwupd-nonfree))
 	      (append
 	       common-extra-services 
 	       (modify-services %desktop-services
