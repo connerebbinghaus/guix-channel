@@ -20,6 +20,7 @@
   #:use-module (gnu packages kde-internet)
   #:use-module (gnu packages kde-graphics)
   #:use-module (gnu packages engineering)
+  #:use-module (gnu packages electronics)
   #:use-module (gnu packages libreoffice)
   #:use-module (gnu packages scanner)
   #:use-module (gnu packages java)
