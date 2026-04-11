@@ -98,7 +98,7 @@
    ark
    kate okular gwenview
    aspell aspell-dict-en ;;texlive texlive-biber emacs-auctex tree-sitter-latex tree-sitter-bibtex
-   freecad
+   freecad openscad
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
    prusa-slicer
    libreoffice simple-scan ;; xsane
