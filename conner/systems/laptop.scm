@@ -16,7 +16,11 @@
                           (source (uuid
                                    "cdafeeb3-6224-459b-a4e2-0e2f8634ca1c"))
                           (target "cryptroot")
-                          (type luks-device-mapping))))
+                          (type luks-device-mapping)
+			  (arguments '(#:allow-discards? #t
+				       #:extra-options
+				       ("--perf-no_read_workqueue"
+					"--perf-no_write_workqueue"))))))
    (kernel-arguments
     (cons*
      "resume=/dev/mapper/cryptroot"
