@@ -31,13 +31,14 @@
   #:use-module (gnu services docker)
   #:use-module (gnu services networking)
   #:use-module (gnu packages firmware)
+  #:use-module (gnu packages networking)
   #:use-module (guix gexp)
   #:use-module (nongnu packages firmware)
   #:use-module (nongnu packages printers)
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
@@ -71,8 +72,12 @@
 				(guix-service-type config => (guix-config-with-substitutes config))
 				(network-manager-service-type config => (network-manager-configuration
 									 (dns "dnsmasq")
-									 (vpn-plugins (list network-manager-openconnect))))
-				))))
+									 (vpn-plugins (list network-manager-openconnect))
+									 (extra-configuration-files
+           `(("001-iwd.conf" ,(plain-file "nm-iwd.conf"
+                                                "\
+[device]
+wifi.backend=iwd\n"))))))))))
 
 (define-public base-os-desktop
   (operating-system
