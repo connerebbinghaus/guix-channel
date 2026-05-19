@@ -14,6 +14,7 @@
   #:use-module (gnu bootloader)
   #:use-module (gnu bootloader grub)
   #:use-module (guix gexp)
+  #:use-module (gnu packages linux)
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
   #:use-module (gnu system nss)
@@ -57,7 +58,7 @@
   (operating-system
    (kernel linux)
    (initrd microcode-initrd)
-   (firmware (list linux-firmware))
+   (firmware (list linux-firmware wireless-regdb))
    (host-name "guix")
    (locale "en_US.utf8")
    (timezone "America/Detroit")
