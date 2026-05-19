@@ -25,6 +25,7 @@
     (cons*
      "resume=/dev/mapper/cryptroot"
      "resume_offset=59461632"
+     "cfg80211.ieee80211_regdom=US"
      (operating-system-user-kernel-arguments base-os-desktop)))
    (swap-devices (list (swap-space
 			(target "/swapfile")
