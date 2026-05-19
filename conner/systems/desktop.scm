@@ -73,11 +73,7 @@
 				(network-manager-service-type config => (network-manager-configuration
 									 (dns "dnsmasq")
 									 (vpn-plugins (list network-manager-openconnect))
-									 (extra-configuration-files
-           `(("001-iwd.conf" ,(plain-file "nm-iwd.conf"
-                                                "\
-[device]
-wifi.backend=iwd\n"))))))))))
+									 (shepherd-requirement (list 'iwd))))))))
 
 (define-public base-os-desktop
   (operating-system
