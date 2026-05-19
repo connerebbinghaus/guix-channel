@@ -62,10 +62,12 @@
 	      (extra-special-file "/usr/share/OVMF/OVMF_CODE.fd"
 				  (file-append ovmf-x86-64 "/share/firmware/ovmf_x64.bin"))
 	      (simple-service 'spice-polkit polkit-service-type (list spice-gtk))
+	      (service iwd-service-type)
 	      (append
 	       common-extra-services 
 	       (modify-services %desktop-services
 				(delete gdm-service-type)
+				(delete wpa-supplicant-service-type)
 				(guix-service-type config => (guix-config-with-substitutes config))
 				(network-manager-service-type config => (network-manager-configuration
 									 (dns "dnsmasq")
