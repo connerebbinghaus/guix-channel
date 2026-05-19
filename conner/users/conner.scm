@@ -100,7 +100,7 @@
    aspell aspell-dict-en ;;texlive texlive-biber emacs-auctex tree-sitter-latex tree-sitter-bibtex
    freecad openscad
    kicad kicad-doc kicad-footprints kicad-packages3d kicad-symbols kicad-templates
-   prusa-slicer
+   ;; prusa-slicer
    libreoffice simple-scan ;; xsane
    openjdk
    prism-launcher steam heroic
