@@ -22,6 +22,7 @@
   #:use-module (gnu packages engineering)
   #:use-module (gnu packages electronics)
   #:use-module (gnu packages libreoffice)
+  #:use-module (gnu packages man)
   #:use-module (gnu packages scanner)
   #:use-module (gnu packages java)
   #:use-module (gnu packages password-utils)
@@ -89,6 +90,7 @@
    tmux
    gnupg pinentry-tty
    netcat
+   man-db man-pages
    `(,isc-bind "utils")))
 
 (define-public %conner-packages-desktop
