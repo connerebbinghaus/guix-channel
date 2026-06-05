@@ -18,6 +18,7 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
   #:use-module (gnu system nss)
+  #:use-module (conner packages wireless-regdb)
   #:export (guix-config-with-substitutes
 	    common-extra-services
 	    tmp-tmpfs-file-system
@@ -58,7 +59,7 @@
   (operating-system
    (kernel linux)
    (initrd microcode-initrd)
-   (firmware (list linux-firmware wireless-regdb))
+   (firmware (list linux-firmware wireless-regdb-signed))
    (host-name "guix")
    (locale "en_US.utf8")
    (timezone "America/Detroit")
