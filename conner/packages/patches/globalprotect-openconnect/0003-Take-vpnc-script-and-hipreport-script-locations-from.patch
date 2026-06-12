@@ -1,0 +1,55 @@
+From 94ef79acd996f25d35a82bd5c9e7552bbe2c1b2c Mon Sep 17 00:00:00 2001
+From: Conner Ebbinghaus <connerebbinghaus@gmail.com>
+Date: Fri, 12 Jun 2026 13:39:35 -0400
+Subject: [PATCH] Take vpnc-script and hipreport script locations from build
+ environment
+
+---
+ crates/openconnect/src/vpn_utils.rs | 30 ++---------------------------
+ 1 file changed, 2 insertions(+), 28 deletions(-)
+
+diff --git a/crates/openconnect/src/vpn_utils.rs b/crates/openconnect/src/vpn_utils.rs
+index e5f81c2..6605148 100644
+--- a/crates/openconnect/src/vpn_utils.rs
++++ b/crates/openconnect/src/vpn_utils.rs
+@@ -2,35 +2,9 @@ use std::{io, path::Path};
+ 
+ use is_executable::IsExecutable;
+ 
+-const VPNC_SCRIPT_LOCATIONS: &[&str] = &[
+-  "/usr/libexec/gpclient/vpnc-script",
+-  "/usr/lib/gpclient/vpnc-script",
+-  "/usr/local/share/vpnc-scripts/vpnc-script",
+-  "/usr/local/sbin/vpnc-script",
+-  "/usr/share/vpnc-scripts/vpnc-script",
+-  "/usr/sbin/vpnc-script",
+-  "/etc/vpnc/vpnc-script",
+-  "/etc/openconnect/vpnc-script",
+-  "/usr/libexec/vpnc-scripts/vpnc-script",
+-  #[cfg(all(target_os = "macos", target_arch = "aarch64"))]
+-  "/opt/homebrew/etc/vpnc/vpnc-script",
+-  #[cfg(all(target_os = "macos", target_arch = "x86_64"))]
+-  "/usr/local/etc/vpnc/vpnc-script",
+-];
++const VPNC_SCRIPT_LOCATIONS: &[&str] = &[env!("GP_VPNC_SCRIPT")];
+ 
+-const CSD_WRAPPER_LOCATIONS: &[&str] = &[
+-  "/usr/libexec/gpclient/hipreport.sh",
+-  #[cfg(target_arch = "x86_64")]
+-  "/usr/lib/x86_64-linux-gnu/openconnect/hipreport.sh",
+-  #[cfg(target_arch = "aarch64")]
+-  "/usr/lib/aarch64-linux-gnu/openconnect/hipreport.sh",
+-  "/usr/lib/openconnect/hipreport.sh",
+-  "/usr/libexec/openconnect/hipreport.sh",
+-  #[cfg(all(target_os = "macos", target_arch = "aarch64"))]
+-  "/opt/homebrew/opt/openconnect/libexec/openconnect/hipreport.sh",
+-  #[cfg(all(target_os = "macos", target_arch = "x86_64"))]
+-  "/usr/local/opt/openconnect/libexec/openconnect/hipreport.sh",
+-];
++const CSD_WRAPPER_LOCATIONS: &[&str] = &[env!("GP_CSD_WRAPPER")];
+ 
+ fn find_executable(locations: &[&'static str]) -> Option<&'static str> {
+   for location in locations.iter() {
+-- 
+2.54.0
+

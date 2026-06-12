@@ -1,0 +1,97 @@
+From 4fcf7f7f1468d1c99891955fc5b36319cc4ad971 Mon Sep 17 00:00:00 2001
+From: Conner Ebbinghaus <connerebbinghaus@gmail.com>
+Date: Wed, 10 Jun 2026 14:13:10 -0400
+Subject: [PATCH 1/2] Take binary locations from environment
+
+---
+ crates/common/build.rs         | 22 ------------------
+ crates/common/src/constants.rs | 42 ----------------------------------
+ 2 files changed, 64 deletions(-)
+ delete mode 100644 crates/common/build.rs
+
+diff --git a/crates/common/build.rs b/crates/common/build.rs
+deleted file mode 100644
+index 15c3e25..0000000
+--- a/crates/common/build.rs
++++ /dev/null
+@@ -1,22 +0,0 @@
+-use std::path::Path;
+-
+-fn main() {
+-  let manifest_dir = env!("CARGO_MANIFEST_DIR");
+-  let workspace_dir = Path::new(manifest_dir).ancestors().nth(2).unwrap();
+-  let gpgui_dir = workspace_dir.parent().unwrap().join("gpgui");
+-
+-  let gp_service_binary = workspace_dir.join("target/debug/gpservice");
+-  let gp_client_binary = workspace_dir.join("target/debug/gpclient");
+-  let gp_auth_binary = workspace_dir.join("target/debug/gpauth");
+-  let gp_gui_helper_binary = workspace_dir.join("target/debug/gpgui-helper");
+-  let gp_gui_binary = gpgui_dir.join("target/debug/gpgui");
+-
+-  println!("cargo:rustc-env=GP_SERVICE_BINARY={}", gp_service_binary.display());
+-  println!("cargo:rustc-env=GP_CLIENT_BINARY={}", gp_client_binary.display());
+-  println!("cargo:rustc-env=GP_AUTH_BINARY={}", gp_auth_binary.display());
+-  println!(
+-    "cargo:rustc-env=GP_GUI_HELPER_BINARY={}",
+-    gp_gui_helper_binary.display()
+-  );
+-  println!("cargo:rustc-env=GP_GUI_BINARY={}", gp_gui_binary.display());
+-}
+diff --git a/crates/common/src/constants.rs b/crates/common/src/constants.rs
+index ac0169f..0d03e77 100644
+--- a/crates/common/src/constants.rs
++++ b/crates/common/src/constants.rs
+@@ -3,50 +3,8 @@ pub const GP_CLIENT_VERSION: &str = "6.3.0-33";
+ pub const GP_SERVICE_LOCK_FILE: &str = "/var/run/gpservice.lock";
+ pub const GP_CALLBACK_PORT_FILENAME: &str = "gpcallback.port";
+ 
+-// Release binaries - macOS (Apple Silicon Homebrew)
+-#[cfg(all(not(debug_assertions), target_os = "macos", target_arch = "aarch64"))]
+-pub const GP_CLIENT_BINARY: &str = "/opt/homebrew/bin/gpclient";
+-#[cfg(all(not(debug_assertions), target_os = "macos", target_arch = "aarch64"))]
+-pub const GP_SERVICE_BINARY: &str = "/opt/homebrew/bin/gpservice";
+-#[cfg(all(not(debug_assertions), target_os = "macos", target_arch = "aarch64"))]
+-pub const GP_GUI_BINARY: &str = "/opt/homebrew/bin/gpgui";
+-#[cfg(all(not(debug_assertions), target_os = "macos", target_arch = "aarch64"))]
+-pub const GP_GUI_HELPER_BINARY: &str = "/opt/homebrew/bin/gpgui-helper";
+-#[cfg(all(not(debug_assertions), target_os = "macos", target_arch = "aarch64"))]
+-pub const GP_AUTH_BINARY: &str = "/opt/homebrew/bin/gpauth";
+-
+-// Release binaries - macOS (Intel Homebrew)
+-#[cfg(all(not(debug_assertions), target_os = "macos", target_arch = "x86_64"))]
+-pub const GP_CLIENT_BINARY: &str = "/usr/local/bin/gpclient";
+-#[cfg(all(not(debug_assertions), target_os = "macos", target_arch = "x86_64"))]
+-pub const GP_SERVICE_BINARY: &str = "/usr/local/bin/gpservice";
+-#[cfg(all(not(debug_assertions), target_os = "macos", target_arch = "x86_64"))]
+-pub const GP_GUI_BINARY: &str = "/usr/local/bin/gpgui";
+-#[cfg(all(not(debug_assertions), target_os = "macos", target_arch = "x86_64"))]
+-pub const GP_GUI_HELPER_BINARY: &str = "/usr/local/bin/gpgui-helper";
+-#[cfg(all(not(debug_assertions), target_os = "macos", target_arch = "x86_64"))]
+-pub const GP_AUTH_BINARY: &str = "/usr/local/bin/gpauth";
+-
+-// Release binaries - Linux
+-#[cfg(all(not(debug_assertions), not(target_os = "macos")))]
+-pub const GP_CLIENT_BINARY: &str = "/usr/bin/gpclient";
+-#[cfg(all(not(debug_assertions), not(target_os = "macos")))]
+-pub const GP_SERVICE_BINARY: &str = "/usr/bin/gpservice";
+-#[cfg(all(not(debug_assertions), not(target_os = "macos")))]
+-pub const GP_GUI_BINARY: &str = "/usr/bin/gpgui";
+-#[cfg(all(not(debug_assertions), not(target_os = "macos")))]
+-pub const GP_GUI_HELPER_BINARY: &str = "/usr/bin/gpgui-helper";
+-#[cfg(all(not(debug_assertions), not(target_os = "macos")))]
+-pub const GP_AUTH_BINARY: &str = "/usr/bin/gpauth";
+-
+-// Debug binaries are set in build.rs via environment variables
+-#[cfg(debug_assertions)]
+ pub const GP_CLIENT_BINARY: &str = env!("GP_CLIENT_BINARY");
+-#[cfg(debug_assertions)]
+ pub const GP_SERVICE_BINARY: &str = env!("GP_SERVICE_BINARY");
+-#[cfg(debug_assertions)]
+ pub const GP_GUI_BINARY: &str = env!("GP_GUI_BINARY");
+-#[cfg(debug_assertions)]
+ pub const GP_GUI_HELPER_BINARY: &str = env!("GP_GUI_HELPER_BINARY");
+-#[cfg(debug_assertions)]
+ pub const GP_AUTH_BINARY: &str = env!("GP_AUTH_BINARY");
+-- 
+2.54.0
+

@@ -4,6 +4,7 @@
   #:use-module (conner users conner)
   #:use-module (conner packages swtpm)
   #:use-module (conner packages virtiofsd)
+  #:use-module (conner packages vpn)
   #:use-module (gnu system)
   #:use-module (gnu system shadow)
   #:use-module (gnu system privilege)
@@ -38,7 +39,7 @@
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd globalprotect-openconnect %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))

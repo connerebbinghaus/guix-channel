@@ -1,0 +1,43 @@
+From 90027c6126071fd318befe7d94f8f2f3803d1ad7 Mon Sep 17 00:00:00 2001
+From: Conner Ebbinghaus <connerebbinghaus@gmail.com>
+Date: Thu, 11 Jun 2026 13:45:14 -0400
+Subject: [PATCH] Export custom gp symbols properly for linking
+
+---
+ libopenconnect.map.in   | 4 ++++
+ libopenconnect5.symbols | 4 ++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/libopenconnect.map.in b/libopenconnect.map.in
+index cf58f69a..51e74bd0 100644
+--- a/libopenconnect.map.in
++++ b/libopenconnect.map.in
+@@ -117,6 +117,10 @@ OPENCONNECT_5_7 {
+ 	openconnect_get_gp_user_expires;
+ 	openconnect_get_gp_lifetime_notify_prior;
+ 	openconnect_get_gp_lifetime_notify_message;
++	openconnect_set_gp_app_version;
++	openconnect_get_gp_app_version;
++	openconnect_set_gp_os_version;
++	openconnect_get_gp_os_version;
+ 	openconnect_disable_dtls;
+ 	openconnect_get_connect_url;
+ 	openconnect_set_webview_callback;
+diff --git a/libopenconnect5.symbols b/libopenconnect5.symbols
+index 0c126338..4bb6ff48 100644
+--- a/libopenconnect5.symbols
++++ b/libopenconnect5.symbols
+@@ -98,6 +98,10 @@ libopenconnect.so.5 libopenconnect5 #MINVER#
+  openconnect_get_gp_user_expires@OPENCONNECT_5_7 8.20
+  openconnect_get_gp_lifetime_notify_prior@OPENCONNECT_5_7 8.20
+  openconnect_get_gp_lifetime_notify_message@OPENCONNECT_5_7 8.20
++ openconnect_set_gp_app_version@OPENCONNECT_5_7 8.20
++ openconnect_get_gp_app_version@OPENCONNECT_5_7 8.20
++ openconnect_set_gp_os_version@OPENCONNECT_5_7 8.20
++ openconnect_get_gp_os_version@OPENCONNECT_5_7 8.20
+  openconnect_disable_dtls@OPENCONNECT_5_7 8.20
+  openconnect_get_connect_url@OPENCONNECT_5_7 8.20
+  openconnect_set_webview_callback@OPENCONNECT_5_7 8.20
+-- 
+2.54.0
+
