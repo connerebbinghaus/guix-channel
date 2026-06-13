@@ -95,13 +95,15 @@ vicinity of DIRECTORY."
 			   (substitute* file
 					(("/usr/bin/gpclient") (string-append out "/bin/gpclient"))))
 			 (list "packaging/files/usr/lib/NetworkManager/dispatcher.d/pre-down.d/gpclient.down"
-			       "packaging/files/usr/libexec/gpclient/hipreport.sh")))))
+			       "packaging/files/usr/libexec/gpclient/hipreport.sh"
+			       "packaging/files/usr/share/applications/gpgui.desktop")))))
 	  (add-after 'install 'install-etc
 	   (lambda* (#:key outputs #:allow-other-keys #:rest args)
 	     (let ((out (assoc-ref outputs "out")))
 	       (install-file "packaging/files/usr/lib/NetworkManager/dispatcher.d/pre-down.d/gpclient.down" (string-append out "/etc/NetworkManager/dispatcher.d/pre-down.d/"))
 	       (install-file "packaging/files/usr/lib/NetworkManager/dispatcher.d/gpclient-nm-hook" (string-append out "/etc/NetworkManager/dispatcher.d/"))
-	       (install-file "packaging/files/usr/libexec/gpclient/hipreport.sh" (string-append out "/libexec/gpclient/"))))))))
+	       (install-file "packaging/files/usr/libexec/gpclient/hipreport.sh" (string-append out "/libexec/gpclient/"))
+	       (install-file "packaging/files/usr/share/applications/gpgui.desktop" (string-append out "/share/applications/"))))))))
     (native-inputs (list pkg-config autoconf automake libtool))
     (inputs (cons* gobject-introspection at-spi2-core atkmm cairo gdk-pixbuf glib harfbuzz librsvg libsoup pango webkitgtk openssl gtk+ lz4 webkitgtk-for-gtk3 openconnect-for-globalprotect-openconnect vpnc-scripts (conner-cargo-inputs 'globalprotect-openconnect)))
     (home-page "https://github.com/yuezk/GlobalProtect-openconnect")
