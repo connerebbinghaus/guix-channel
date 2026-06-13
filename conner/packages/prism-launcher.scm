@@ -16,20 +16,16 @@
   #:use-module (gnu packages java)
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages xorg)
-  #:use-module (gnu packages pulseaudio))
-
-(define quazip-qt6
-  (package
-   (inherit quazip)
-   (name "quazip")
-   (inputs (modify-inputs (package-inputs quazip)
-			  (replace "qtbase" qtbase)
-			  (append qt5compat)))))
+  #:use-module (gnu packages pulseaudio)
+  #:use-module (gnu packages linux)
+  #:use-module (gnu packages aidc)
+  #:use-module (gnu packages backup)
+  #:use-module (gnu packages man))
 
 (define-public prism-launcher
   (package
    (name "prism-launcher")
-   (version "9.4")
+   (version "11.0.2")
    (source (origin
 	    (method git-fetch)
 	    (uri (git-reference
@@ -39,16 +35,9 @@
 	    (file-name (git-file-name name version))
 	    (sha256
 	     (base32
-	      "1xxgyx0z5r3hk3yk4gglbfwvq2qk1j9a0dkrv55j4vrlkni79nrm"))
-	    (modules '((guix build utils)))
-	    (snippet '(for-each delete-file-recursively ; delete bundled libraries available in guix
-				(list "libraries/cmark"
-				      "libraries/extra-cmake-modules"
-				      "libraries/filesystem" ; gulrak-filesystem
-				      "libraries/quazip"
-				      "libraries/tomlplusplus"
-				      "libraries/zlib")))))
+	      "1qzzfaz4k5c3wlgf53v0cpkg5fw24hfknm7j41hkbihrajgv6nxn"))))
    (arguments '(
+      #:configure-flags '("-DCMAKE_CXX_FLAGS=-Wno-array-bounds") ;; Causes errors in QT headers
       #:phases
       (modify-phases %standard-phases ; Taken from https://gitlab.com/guix-gaming-channels/games/-/blob/66fe8b72d114ee2de218fc46d0f7ad95d8b3129e/games/packages/minecraft.scm
 		     (add-after 'install 'patch-paths
@@ -70,17 +59,16 @@
 				    #t))))))
    (build-system cmake-build-system)
    (native-inputs
-    (list extra-cmake-modules pkg-config))
+    (list extra-cmake-modules pkg-config scdoc))
    (inputs
     (list
      bash-minimal
      qtbase
-     qt5compat
      qtwayland
      qtnetworkauth
      cmark
      gulrak-filesystem
-     quazip-qt6
+     quazip
      tomlplusplus
      zlib
      mesa
@@ -91,7 +79,10 @@
      libxxf86vm
      pulseaudio
      mesa
-     xrandr))
+     xrandr
+     gamemode
+     qrencode
+     libarchive))
    (propagated-inputs (list `(,openjdk17 "jdk")))
    (home-page "https://prismlauncher.org/")
    (synopsis "Custom launcher for Minecraft")
