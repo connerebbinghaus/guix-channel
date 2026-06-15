@@ -64,6 +64,10 @@
 	      (extra-special-file "/usr/share/OVMF/OVMF_CODE.fd"
 				  (file-append ovmf-x86-64 "/share/firmware/ovmf_x64.bin"))
 	      (simple-service 'spice-polkit polkit-service-type (list spice-gtk))
+	      (simple-service 'globalprotect-openconnect-hook etc-service-type
+			      (list
+			       `("NetworkManager/dispatcher.d/gpclient-nm-hook" ,(file-append globalprotect-openconnect "/etc/NetworkManager/dispatcher.d/gpclient-nm-hook"))
+			       `("NetworkManager/dispatcher.d/pre-down.d/gpclient.down" ,(file-append globalprotect-openconnect "/etc/NetworkManager/dispatcher.d/pre-down.d/gpclient.down"))))
 	      (service iwd-service-type)
 	      (append
 	       common-extra-services 
