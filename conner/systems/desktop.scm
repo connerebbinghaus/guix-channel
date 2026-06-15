@@ -69,6 +69,16 @@
 			       `("NetworkManager/dispatcher.d/gpclient-nm-hook" ,(file-append globalprotect-openconnect "/etc/NetworkManager/dispatcher.d/gpclient-nm-hook"))
 			       `("NetworkManager/dispatcher.d/pre-down.d/gpclient.down" ,(file-append globalprotect-openconnect "/etc/NetworkManager/dispatcher.d/pre-down.d/gpclient.down"))))
 	      (service iwd-service-type)
+	      (simple-service 'guix-moe guix-service-type
+			      (guix-extension
+			       (authorized-keys
+				(list (plain-file "guix-moe-old.pub"
+						  "(public-key (ecc (curve Ed25519) (q #374EC58F5F2EC0412431723AF2D527AD626B049D657B5633AAAEBC694F3E33F9#)))")
+				      ;; New key since 2025-10-29.
+				      (plain-file "guix-moe.pub"
+						  "(public-key (ecc (curve Ed25519) (q #552F670D5005D7EB6ACF05284A1066E52156B51D75DE3EBD3030CD046675D543#)))")))
+			       (substitute-urls
+				'("https://cache-cdn.guix.moe"))))
 	      (append
 	       common-extra-services 
 	       (modify-services %desktop-services
