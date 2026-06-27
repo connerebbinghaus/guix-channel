@@ -33,13 +33,14 @@
   #:use-module (gnu services networking)
   #:use-module (gnu packages firmware)
   #:use-module (gnu packages networking)
+  #:use-module (gnu packages vulkan)
   #:use-module (guix gexp)
   #:use-module (nongnu packages firmware)
   #:use-module (nongnu packages printers)
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd globalprotect-openconnect %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd globalprotect-openconnect vulkan-loader %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
