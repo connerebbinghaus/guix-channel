@@ -20,7 +20,8 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu packages aidc)
   #:use-module (gnu packages backup)
-  #:use-module (gnu packages man))
+  #:use-module (gnu packages man)
+  #:use-module (gnu packages vulkan))
 
 (define-public prism-launcher
   (package
@@ -55,7 +56,7 @@
 							      (string-append (assoc-ref inputs dep)
 									     "/lib"))
 							    '("libx11" "libxext" "libxcursor"
-							      "libxrandr" "libxxf86vm" "pulseaudio" "mesa")))))
+							      "libxrandr" "libxxf86vm" "pulseaudio" "mesa" "vulkan-loader")))))
 				    #t))))))
    (build-system cmake-build-system)
    (native-inputs
@@ -82,7 +83,8 @@
      xrandr
      gamemode
      qrencode
-     libarchive))
+     libarchive
+     vulkan-loader))
    (propagated-inputs (list `(,openjdk17 "jdk")))
    (home-page "https://prismlauncher.org/")
    (synopsis "Custom launcher for Minecraft")
