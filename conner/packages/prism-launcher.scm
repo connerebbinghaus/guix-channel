@@ -56,7 +56,7 @@
 							      (string-append (assoc-ref inputs dep)
 									     "/lib"))
 							    '("libx11" "libxext" "libxcursor"
-							      "libxrandr" "libxxf86vm" "pulseaudio" "mesa" "vulkan-loader")))))
+							      "libxrandr" "libxxf86vm" "pulseaudio" "mesa" "vulkan-loader" "eudev")))))
 				    #t))))))
    (build-system cmake-build-system)
    (native-inputs
@@ -84,7 +84,8 @@
      gamemode
      qrencode
      libarchive
-     vulkan-loader))
+     vulkan-loader
+     eudev))
    (propagated-inputs (list `(,openjdk17 "jdk")))
    (home-page "https://prismlauncher.org/")
    (synopsis "Custom launcher for Minecraft")
