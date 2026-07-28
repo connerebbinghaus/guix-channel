@@ -113,7 +113,7 @@
    stellarium
    font-google-noto font-google-noto-serif-cjk font-google-noto-sans-cjk font-google-noto-emoji
    mpv
-   icedove/wayland
+   ;;icedove/wayland
    vesta
    zotero
    flatpak
