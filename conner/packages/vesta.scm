@@ -32,7 +32,7 @@
    (arguments
     `(#:substitutable? #f
       #:patchelf-plan
-      `((,(string-append "usr/local/vesta-" ,version "/VESTA-gui") ("atk"
+      `((,(string-append "usr/local/vesta-" ,version "/VESTA-gui") ("at-spi2-core"
                      "cairo"
                      "fontconfig"
                      "freetype"
@@ -86,7 +86,7 @@
 				#t)))))
    (inputs
     `(("glibc" ,glibc)
-      ("atk" ,atk)
+      ("at-spi2-core" ,at-spi2-core)
        ("cairo" ,cairo)
        ("fontconfig" ,fontconfig)
        ("freetype" ,freetype)
