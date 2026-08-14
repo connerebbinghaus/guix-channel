@@ -1,5 +1,6 @@
 (define-module (conner systems surface)
   #:use-module (conner systems desktop)
+  #:use-module (gnu services)
   #:use-module (gnu system)
   #:use-module (gnu system file-systems)
   #:use-module (surface packages linux)
