@@ -2,6 +2,8 @@
   #:use-module (conner systems desktop)
   #:use-module (gnu system)
   #:use-module (gnu system file-systems)
+  #:use-module (surface packages linux)
+  #:use-module (surface services touchscreen)
   #:export (conner-surface-os))
   
   
@@ -10,11 +12,15 @@
   (operating-system
    (inherit base-os-desktop)
    (host-name "conner-surface")
+   (kernel linux-surface)
    (kernel-arguments
     (cons*
      "resume=/dev/nvme0n1p2"
      "cfg80211.ieee80211_regdom=US"
      (operating-system-user-kernel-arguments base-os-desktop)))
+   (services (cons*
+	      (service iptsd-service-type)
+	      desktop-extra-services))
    (swap-devices (list (swap-space
 			(target "/dev/nvme0n1p2")
 			(priority 0))))

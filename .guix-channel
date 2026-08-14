@@ -8,4 +8,12 @@
     (channel-introduction
      (version 0)
      (commit "897c1a470da759236cc11798f4e0a5f7d4d59fbc")
-     (signer "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))))
+     (signer "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
+  (channel
+   (name surface)
+   (url "https://codeberg.org/Dariqq/guix-surface")
+   (introduction
+    (channel-introduction
+     (version 0)
+     (commit "9d0cdec8faa1450afc6f437c088bc8929ccdc0a3")
+     (signer "12F3 9DE4 3608 FC37 F146 407A 8386 A528 1605 3118"))))))
