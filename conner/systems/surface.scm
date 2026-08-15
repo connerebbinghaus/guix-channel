@@ -27,7 +27,7 @@
 			(priority 0))))
    (file-systems (cons* (file-system
                          (mount-point "/boot/efi")
-                         (device (uuid "F282-91EA"
+                         (device (uuid "1718-6A63"
                                        'fat32))
                          (type "vfat"))
 			(file-system
