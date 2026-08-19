@@ -8,6 +8,7 @@
   #:use-module (gnu system)
   #:use-module (gnu system shadow)
   #:use-module (gnu system privilege)
+  #:use-module (gnu system nss)
   #:use-module (gnu packages kde-plasma)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages scanner)
@@ -97,6 +98,7 @@
    (users (cons* conner-user-desktop %base-user-accounts))
    (packages desktop-packages)
    (services desktop-extra-services)
+   (name-service-switch %mdns-host-lookup-nss)
    (privileged-programs
     (append (list (privileged-program
                    (program (file-append spice-gtk "/libexec/spice-client-glib-usb-acl-helper"))
