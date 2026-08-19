@@ -18,6 +18,7 @@
     (cons*
      "resume=/dev/nvme0n1p2"
      "cfg80211.ieee80211_regdom=US"
+     "pci=hpiosize=0" ; https://github.com/linux-surface/linux-surface/wiki/Surface-Pro-9#acpi-interrupt-storm
      (operating-system-user-kernel-arguments base-os-desktop)))
    (services (cons*
 	      (service iptsd-service-type)
