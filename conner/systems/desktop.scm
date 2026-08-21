@@ -42,6 +42,13 @@
   #:export (desktop-packages
 	    base-os-desktop))
 
+(define rtl-sdr-modprobe
+  (plain-file "rtl-sdr.conf"
+              "blacklist dvb_usb_rtl28xxu
+blacklist dvb_usb_rtl2832u
+blacklist rtl2832
+blacklist rtl2830"))
+
 (define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd globalprotect-openconnect vulkan-loader rtl-sdr %base-packages))
 
 (define-public desktop-extra-services (cons*
@@ -61,6 +68,9 @@
 	      (udev-rules-service 'android android-udev-rules
 				  #:groups '("adbusers"))
 	      (udev-rules-service 'rtl-sdr rtl-sdr)
+	      (simple-service 'rtl-sdr-modprobe-conf etc-service-type
+                                   (list `("modprobe.d/rtl-sdr.conf"
+                                           ,rtl-sdr-modprobe)))
 	      (service libvirt-service-type)
 	      (service virtlog-service-type)
 	      (service containerd-service-type)
