@@ -46,6 +46,7 @@
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages education)
   #:use-module (gnu packages cups)
+  #:use-module (gnu packages radio)
   #:use-module (nongnu packages wine)
   #:use-module (nongnu packages productivity)
   #:use-module (gnu services)
@@ -120,6 +121,7 @@
    cups
    ;anki
    kdeconnect
+   rtl-sdr gqrx
    %conner-packages))
 
 (define-public conner-home
