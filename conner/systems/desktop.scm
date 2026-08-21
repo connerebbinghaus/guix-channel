@@ -35,13 +35,14 @@
   #:use-module (gnu packages firmware)
   #:use-module (gnu packages networking)
   #:use-module (gnu packages vulkan)
+  #:use-module (gnu packages radio)
   #:use-module (guix gexp)
   #:use-module (nongnu packages firmware)
   #:use-module (nongnu packages printers)
   #:export (desktop-packages
 	    base-os-desktop))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd globalprotect-openconnect vulkan-loader %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd globalprotect-openconnect vulkan-loader rtl-sdr %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
@@ -59,6 +60,7 @@
 	      (service bluetooth-service-type)
 	      (udev-rules-service 'android android-udev-rules
 				  #:groups '("adbusers"))
+	      (udev-rules-service 'rtl-sdr rtl-sdr)
 	      (service libvirt-service-type)
 	      (service virtlog-service-type)
 	      (service containerd-service-type)
