@@ -2,6 +2,7 @@
   #:use-module (conner users)
   #:use-module (conner packages prism-launcher)
   #:use-module (conner packages vesta)
+  #:use-module (conner services gnupg)
   #:use-module (gnu system shadow)
   #:use-module (gnu home)
   #:use-module (gnu packages)
@@ -135,7 +136,7 @@
 export HISTFILE=$XDG_CACHE_HOME/.bash_history")))
 		    (bashrc (list (plain-file "bashrc-dotenv"  (string-append "\
 eval \"$(direnv hook bash)\""))))))
-           (service home-gpg-agent-service-type
+           (service home-gpg-agent-service-type-fixed
                     (home-gpg-agent-configuration
                      (pinentry-program
                       (file-append pinentry-tty "/bin/pinentry-tty"))
