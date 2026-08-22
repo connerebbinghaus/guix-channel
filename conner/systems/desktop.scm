@@ -107,7 +107,6 @@ blacklist rtl2830"))
 				  (kdc "kerberos.ebbingha.us"))))))
 	      (service pam-krb5-service-type (pam-krb5-configuration))
 	      (service gss-service-type (gss-configuration))
-	      (service idmap-service-type (idmap-configuration))
               (simple-service 'network-online shepherd-root-service-type
 		  (list
 		   (shepherd-service
