@@ -20,6 +20,7 @@
 
    (file-systems (cons*
 		  tmp-tmpfs-file-system
+		  nas-nfs-filesystem
 		  (file-system
                    (mount-point "/boot/efi")
                    (device (uuid "A9F2-DB4A"

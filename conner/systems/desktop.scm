@@ -9,6 +9,7 @@
   #:use-module (gnu system shadow)
   #:use-module (gnu system privilege)
   #:use-module (gnu system nss)
+  #:use-module (gnu system file-systems)
   #:use-module (gnu packages kde-plasma)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages scanner)
@@ -31,8 +32,10 @@
   #:use-module (gnu services virtualization)
   #:use-module (gnu services dbus)
   #:use-module (gnu services docker)
+  #:use-module (gnu services nfs)
   #:use-module (gnu services networking)
   #:use-module (gnu services kerberos)
+  #:use-module (gnu services shepherd)
   #:use-module (gnu packages firmware)
   #:use-module (gnu packages networking)
   #:use-module (gnu packages vulkan)
@@ -103,6 +106,26 @@ blacklist rtl2830"))
 				  (admin-server "kerberos.ebbingha.us")
 				  (kdc "kerberos.ebbingha.us"))))))
 	      (service pam-krb5-service-type (pam-krb5-configuration))
+	      (service gss-service-type (gss-configuration))
+	      (service idmap-service-type (idmap-configuration))
+              (simple-service 'network-online shepherd-root-service-type
+		  (list
+		   (shepherd-service
+		    (requirement '(networking))
+		    (provision '(network-online))
+		    (documentation "Wait for the network to come up.")
+		    (start #~(lambda _
+			       (let* ((cmd
+				       "set -eux
+c=0
+while ! /run/setuid-programs/ping -qc1 -W1 example.org; do
+	sleep 1
+	[ \"$((c += 1))\" -lt 30 ] || exit 1  # Limit the wait time
+done
+")
+				      (status (system cmd)))
+				 (= 0 (status:exit-val status)))))
+		    (one-shot? #t))))
 	      (append
 	       common-extra-services 
 	       (modify-services %desktop-services
@@ -113,6 +136,16 @@ blacklist rtl2830"))
 									 (dns "dnsmasq")
 									 (vpn-plugins (list network-manager-openconnect))
 									 (shepherd-requirement (list 'iwd))))))))
+
+(define-public nas-nfs-filesystem
+  (file-system
+   (type "nfs4")
+   (device "nas.ebbingha.us:/storage")
+   (mount-point "/mnt/nas")
+   (options "rw,rsize=1048576,wsize=1048576,vers=4,sec=krb5i")
+   (create-mount-point? #t)
+   (mount-may-fail? #t)
+   (shepherd-requirements '(network-online))))
 
 (define-public base-os-desktop
   (operating-system
