@@ -32,6 +32,7 @@
   #:use-module (gnu services dbus)
   #:use-module (gnu services docker)
   #:use-module (gnu services networking)
+  #:use-module (gnu services kerberos)
   #:use-module (gnu packages firmware)
   #:use-module (gnu packages networking)
   #:use-module (gnu packages vulkan)
@@ -93,6 +94,15 @@ blacklist rtl2830"))
 						  "(public-key (ecc (curve Ed25519) (q #552F670D5005D7EB6ACF05284A1066E52156B51D75DE3EBD3030CD046675D543#)))")))
 			       (substitute-urls
 				'("https://cache-cdn.guix.moe"))))
+	      (service krb5-service-type
+		       (krb5-configuration
+			(default-realm "EBBINGHA.US")
+			(realms (list
+				 (krb5-realm
+				  (name "EBBINGHA.US")
+				  (admin-server "kerberos.ebbingha.us")
+				  (kdc "kerberos.ebbingha.us"))))))
+	      (service pam-krb5-service-type (pam-krb5-configuration))
 	      (append
 	       common-extra-services 
 	       (modify-services %desktop-services
