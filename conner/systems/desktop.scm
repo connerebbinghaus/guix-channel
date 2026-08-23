@@ -108,6 +108,7 @@ blacklist rtl2830"))
 	      (service pam-krb5-service-type (pam-krb5-configuration))
 	      (service gss-service-type (gss-configuration))
 	      (service rpcbind-service-type (rpcbind-configuration))
+	      (service pipefs-service-type (pipefs-configuration))
               (simple-service 'network-online shepherd-root-service-type
 		  (list
 		   (shepherd-service
