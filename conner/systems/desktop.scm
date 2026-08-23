@@ -65,7 +65,7 @@ blacklist rtl2830"))
 	      (service sddm-service-type
 		       (sddm-configuration
 			(sddm sddm)
-			(display-server "wayland")
+			;; (display-server "wayland")
 			(theme "breeze")))
 	      (service cups-service-type
 		       (cups-configuration
