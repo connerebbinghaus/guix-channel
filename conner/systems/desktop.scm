@@ -43,6 +43,7 @@
   #:use-module (gnu packages vulkan)
   #:use-module (gnu packages radio)
   #:use-module (gnu packages kerberos)
+  #:use-module (gnu packages display-managers)
   #:use-module (guix gexp)
   #:use-module (nongnu packages firmware)
   #:use-module (nongnu packages printers)
@@ -63,7 +64,8 @@ blacklist rtl2830"))
 	      (service plasma-desktop-service-type)
 	      (service sddm-service-type
 		       (sddm-configuration
-			;; (display-server "wayland")
+			(sddm sddm)
+			(display-server "wayland")
 			(theme "breeze")))
 	      (service cups-service-type
 		       (cups-configuration
