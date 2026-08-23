@@ -20,6 +20,8 @@
   #:use-module (gnu packages docker)
   #:use-module (gnu packages cups)
   #:use-module (gnu packages printers)
+  #:use-module (gnu packages nfs)
+  #:use-module (gnu packages vpn)
   #:use-module (nongnu packages printers)
   #:use-module (gnu services)
   #:use-module (gnu services base)
@@ -53,7 +55,7 @@ blacklist dvb_usb_rtl2832u
 blacklist rtl2832
 blacklist rtl2830"))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd globalprotect-openconnect vulkan-loader rtl-sdr %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd globalprotect-openconnect vpn-slice vulkan-loader rtl-sdr nfs-utils %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
