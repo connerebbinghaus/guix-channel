@@ -161,7 +161,7 @@ eval \"$(direnv hook bash)\""))))))
            (service home-syncthing-service-type)
 	   (service home-dbus-service-type)
 	   (service home-pipewire-service-type)
-           (service home-gpg-agent-service-type
+           (service home-gpg-agent-service-type-fixed
                     (home-gpg-agent-configuration
                      (pinentry-program
                       (file-append pinentry-qt "/bin/pinentry-qt"))
