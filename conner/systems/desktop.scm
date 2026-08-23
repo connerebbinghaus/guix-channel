@@ -42,6 +42,7 @@
   #:use-module (gnu packages networking)
   #:use-module (gnu packages vulkan)
   #:use-module (gnu packages radio)
+  #:use-module (gnu packages kerberos)
   #:use-module (guix gexp)
   #:use-module (nongnu packages firmware)
   #:use-module (nongnu packages printers)
@@ -55,7 +56,7 @@ blacklist dvb_usb_rtl2832u
 blacklist rtl2832
 blacklist rtl2830"))
 
-(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd globalprotect-openconnect vpn-slice vulkan-loader rtl-sdr nfs-utils %base-packages))
+(define-public desktop-packages (cons* print-manager system-config-printer sane-airscan ipp-usb hplip hplip-plugin sane-backends bluedevil bluez-qt swtpm virtiofsd fwupd-nonfree iwd globalprotect-openconnect vpn-slice vulkan-loader rtl-sdr nfs-utils mit-krb5 %base-packages))
 
 (define-public desktop-extra-services (cons*
 	      (service guix-home-service-type `(("conner" ,conner-home-desktop)))
