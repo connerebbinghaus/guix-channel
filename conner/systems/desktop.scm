@@ -102,6 +102,7 @@ blacklist rtl2830"))
 	      (service krb5-service-type
 		       (krb5-configuration
 			(default-realm "EBBINGHA.US")
+			(dns-canonicalize-hostname? #f)			
 			(realms (list
 				 (krb5-realm
 				  (name "EBBINGHA.US")
@@ -136,7 +137,6 @@ done
 				(delete wpa-supplicant-service-type)
 				(guix-service-type config => (guix-config-with-substitutes config))
 				(network-manager-service-type config => (network-manager-configuration
-									 (dns "dnsmasq")
 									 (vpn-plugins (list network-manager-openconnect))
 									 (shepherd-requirement (list 'iwd))))))))
 
