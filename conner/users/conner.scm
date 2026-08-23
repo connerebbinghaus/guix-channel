@@ -55,7 +55,6 @@
   #:use-module (gnu home services)
   #:use-module (gnu home services shells)
   #:use-module (gnu home services syncthing)
-  #:use-module (gnu home services gnupg)
   #:use-module (gnu home services sound)
   #:use-module (gnu home services desktop)
   #:use-module (guix build utils)
