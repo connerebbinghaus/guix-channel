@@ -605,7 +605,7 @@ exec -a \"$0\" \"~a\" \"$@\""
       (substitute-keyword-arguments
        (package-arguments base-rust)
        ((#:phases phases)
-        `(modify-phases ,phases
+        #~(modify-phases #$phases
           (add-after 'configure 'enable-nightly-features
 	   (lambda _
 	     (substitute* "config.toml"
