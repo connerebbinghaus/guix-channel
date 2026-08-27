@@ -12,7 +12,8 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages cross-base)
-  #:use-module (guix gexp))
+  #:use-module (guix gexp)
+  #:use-module (conner packages))
 
 (define-public rustc-fixed rust) ;; Now fixed upstream
 
@@ -188,7 +189,7 @@ ge13ca993e8ccb9ba9847cc330696e02839f328f7/jemalloc"))
       (source
        (origin
         (inherit (package-source base-rust))
-	(patches (list (absolute-file-name "patches/rust-1.97-clippy-fix-proc-macros-aux-race.patch"  (current-source-directory))))
+	(patches (conner-patches "rust-1.97-clippy-fix-proc-macros-aux-race.patch"))
         (snippet
          '(begin
              (for-each delete-file-recursively
