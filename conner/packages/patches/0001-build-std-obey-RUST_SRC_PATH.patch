@@ -1,0 +1,27 @@
+From 8d9220ab4b61650d313bab431f2bf732ef4429fc Mon Sep 17 00:00:00 2001
+From: Conner Ebbinghaus <connerebbinghaus@gmail.com>
+Date: Thu, 27 Aug 2026 12:22:35 -0400
+Subject: [PATCH] build-std: obey RUST_SRC_PATH
+
+---
+ src/tools/cargo/src/cargo/core/compiler/standard_lib.rs | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/tools/cargo/src/cargo/core/compiler/standard_lib.rs b/src/tools/cargo/src/cargo/core/compiler/standard_lib.rs
+index 45a313a92..395996d60 100644
+--- a/src/tools/cargo/src/cargo/core/compiler/standard_lib.rs
++++ b/src/tools/cargo/src/cargo/core/compiler/standard_lib.rs
+@@ -221,6 +221,10 @@ fn detect_sysroot_src_path(target_data: &RustcTargetData<'_>) -> CargoResult<Pat
+         return Ok(s.into());
+     }
+ 
++    if let Some(s) = target_data.gctx.get_env_os("RUST_SRC_PATH") {
++        return Ok(s.into());
++    }
++
+     // NOTE: This is temporary until we figure out how to acquire the source.
+     let src_path = target_data
+         .info(CompileKind::Host)
+-- 
+2.54.0
+

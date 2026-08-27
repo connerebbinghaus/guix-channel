@@ -189,7 +189,7 @@ ge13ca993e8ccb9ba9847cc330696e02839f328f7/jemalloc"))
       (source
        (origin
         (inherit (package-source base-rust))
-	(patches (conner-patches "rust-1.97-clippy-fix-proc-macros-aux-race.patch"))
+	(patches (conner-patches "rust-1.97-clippy-fix-proc-macros-aux-race.patch" "0001-build-std-obey-RUST_SRC_PATH.patch"))
         (snippet
          '(begin
              (for-each delete-file-recursively
@@ -610,6 +610,57 @@ exec -a \"$0\" \"~a\" \"$@\""
 	   (lambda _
 	     (substitute* "config.toml"
 			  (("channel = \"stable\"") "channel = \"nightly\"")))))))))))
+
+(define-public with-extra-targets
+  (lambda (base-rust extra-targets)
+    (package
+      (inherit base-rust)
+      (outputs '("out"))
+      (arguments
+       (substitute-keyword-arguments (package-arguments base-rust)
+         ((#:phases phases)
+          #~(modify-phases #$phases
+              (replace 'configure
+                (lambda* (#:key inputs outputs #:allow-other-keys)
+                  (let* ((out (assoc-ref outputs "out"))
+                         (target-cc
+                          (search-input-file
+                           inputs (string-append "/bin/" #$target-cc-name))))
+                    (call-with-output-file "config.toml"
+                      (lambda (port)
+                        (display (string-append "
+[llvm]
+[build]
+cargo = \"" (search-input-file inputs "/bin/cargo") "\"
+rustc = \"" (search-input-file inputs "/bin/rustc") "\"
+docs = false
+python = \"" (which "python") "\"
+vendor = true
+submodules = false
+target = [\"" #$target "\"]
+[install]
+prefix = \"" out "\"
+sysconfdir = \"etc\"
+[rust]
+debug = false
+jemalloc = false
+default-linker = \"" target-cc "\"
+channel = \"stable\"
+[target." #$(platform-rust-target (lookup-platform-by-system (%current-system))) "]
+# These are all native tools
+llvm-config = \"" (search-input-file inputs "/bin/llvm-config") "\"
+linker = \"" (which "gcc") "\"
+cc = \"" (which "gcc") "\"
+cxx = \"" (which "g++") "\"
+ar = \"" (which "ar") "\"
+[target." #$target "]
+llvm-config = \"" (search-input-file inputs "/bin/llvm-config") "\"
+linker = \"" target-cc "\"
+cc = \"" target-cc "\"
+cxx = \"" (search-input-file inputs (string-append "/bin/" #$target-cxx-name)) "\"
+ar = \"" (search-input-file inputs (string-append "/bin/" #$target-ar-name)) "\"
+[dist]
+") port)))))))))))))
 
 (define-public make-rust-sysroot
   (lambda (target deps target-cc target-cxx target-ar)
