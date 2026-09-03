@@ -5,8 +5,6 @@
 (eval-when-compile
   (require 'use-package))
 
-(cua-mode t)
-
 (use-package geiser-guile)
 (with-eval-after-load 'geiser-guile
   (add-to-list 'geiser-guile-load-path "~/Projects/guix")
@@ -24,6 +22,18 @@
 	 (cpp-mode . lsp-deferred)
 	 (python-mode . lsp-deferred))
   :commands (lsp lsp-deferred))
+
+(use-package dap-mode
+  :after lsp-mode
+  :commands dap-debug
+  :hook ((rust-mode . dap-ui-mode)
+	 (cpp-mode . dap-mode)
+	 (python-mode . dap-mode))
+  :config
+  (eval-when-compile
+    (require 'cl))
+  (require 'dap-python)
+  (require 'dap-lldb))
 
 (use-package yasnippet
   :hook ((lsp-mode . yas-minor-mode)))
