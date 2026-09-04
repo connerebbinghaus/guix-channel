@@ -26,7 +26,7 @@
 (define-public prism-launcher
   (package
    (name "prism-launcher")
-   (version "11.0.2")
+   (version "11.1.0")
    (source (origin
 	    (method git-fetch)
 	    (uri (git-reference
@@ -36,7 +36,7 @@
 	    (file-name (git-file-name name version))
 	    (sha256
 	     (base32
-	      "1qzzfaz4k5c3wlgf53v0cpkg5fw24hfknm7j41hkbihrajgv6nxn"))))
+	      "0zhvyzf13ijaqx3npam4lslgbwy8df9kj0jjijbvgzggbkkgbl1n"))))
    (arguments '(
       #:configure-flags '("-DCMAKE_CXX_FLAGS=-Wno-array-bounds") ;; Causes errors in QT headers
       #:phases
