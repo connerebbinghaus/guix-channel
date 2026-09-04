@@ -106,7 +106,7 @@
    ;; prusa-slicer
    libreoffice simple-scan ;; xsane
    openjdk
-   prism-launcher steam heroic
+   prism-launcher steam
    keepassxc
    gimp inkscape blender
    virt-manager
