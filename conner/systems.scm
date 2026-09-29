@@ -59,7 +59,7 @@
   (operating-system
    (kernel linux)
    (initrd microcode-initrd)
-   (firmware (list linux-firmware wireless-regdb-signed))
+   (firmware (list linux-firmware wireless-regdb))
    (host-name "guix")
    (locale "en_US.utf8")
    (timezone "America/Detroit")
