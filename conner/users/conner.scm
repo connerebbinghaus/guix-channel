@@ -121,7 +121,7 @@
    cups
    ;anki
    kdeconnect
-   rtl-sdr gqrx
+   rtl-sdr sdr++
    %conner-packages))
 
 (define-public conner-home
