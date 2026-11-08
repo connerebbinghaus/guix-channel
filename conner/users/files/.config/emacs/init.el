@@ -103,6 +103,28 @@
      (monaspace-xenon-semi-bold :inherit monaspace-xenon
                                 :default-weight semibold))))
 
+(use-package ligature
+  :config
+  (ligature-set-ligatures 'prog-mode
+			  '(
+			    "===" "!==" "=!=" "=/=" "/==" "/=" "#=" "==" "!=" "~~" "=~" "!~" "~-" "-~" "&=" ; ss01
+			    ">=" "<=" ; ss02
+			    "<-->" "<->" "<!--" "<--" "-->" "<-" "->" "<~>" "<~~" "~~>" "<~" "~>" ; ss03
+			    "</" "/>" "</>" "<>" ; ss04
+			    "[|" "|]" "/\\" "\\/" "|>" "<|" "<|>" "{|" "|}" ; ss05
+			    "###" "+++" "&&&" ; ss06
+			    "-:-" "=:=" ":>:" ":<:" "::>" "<::" "::" ":::" ; ss07
+			    "..=" "..-" "..<" ".=" ".-" ; ss08
+			    "<=>" "<<=" "=>>" "=<<" ">>=" "=>" "<<" ">>" ; ss09
+			    "#[" "#(" "#![" ; ss10
+			    "..." "///" "//" "!!" "||" ";;" ";;;" ; liga
+			    ))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
+
+(inhibit-startup-screen t)
+
 ;; Fake the footer to avoid warnings
 ;; (provide 'init)
 ;;; init.el ends here
