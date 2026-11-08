@@ -97,7 +97,7 @@
 
 (define-public %conner-packages-desktop
   (cons*
-   firefox torbrowser
+   firefox ;; torbrowser
    vscodium
    ark
    kate okular gwenview
