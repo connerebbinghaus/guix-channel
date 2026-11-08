@@ -48,6 +48,7 @@
   #:use-module (gnu packages education)
   #:use-module (gnu packages cups)
   #:use-module (gnu packages radio)
+  #:use-module (gnu packages fonts)
   #:use-module (nongnu packages wine)
   #:use-module (nongnu packages productivity)
   #:use-module (gnu services)
@@ -86,7 +87,7 @@
    git direnv ripgrep
    emacs guile-3.0 emacs-guix emacs-geiser emacs-geiser-guile emacs-paredit emacs-magit emacs-envrc emacs-org emacs-lsp-mode emacs-lsp-ui emacs-dap-mode emacs-flycheck emacs-company
    emacs-rustic tree-sitter-rust tree-sitter-bash tree-sitter-markdown tree-sitter-scheme tree-sitter-c tree-sitter-cpp tree-sitter-python tree-sitter-awk
-   tree-sitter-lua emacs-doom-modeline emacs-use-package emacs-treemacs emacs-lsp-treemacs emacs-yasnippet emacs-yasnippet-snippets python-lsp-server
+   tree-sitter-lua emacs-doom-modeline emacs-use-package emacs-treemacs emacs-lsp-treemacs emacs-yasnippet emacs-yasnippet-snippets python-lsp-server emacs-fontaine
    htop btop
    tmux
    gnupg pinentry-tty
@@ -122,6 +123,7 @@
    ;anki
    kdeconnect
    rtl-sdr sdr++
+   font-monaspace
    %conner-packages))
 
 (define-public conner-home
