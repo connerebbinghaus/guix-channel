@@ -56,10 +56,11 @@
   :hook (after-init . envrc-global-mode))
 
 (use-package fontaine
+  :ensure t
   :config
+  (fontaine-mode 1)
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
 
-  :hook (after-init . fontaine-mode))
   
   :custom
   (fontaine-presets
