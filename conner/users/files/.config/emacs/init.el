@@ -123,7 +123,7 @@
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
 
-(inhibit-startup-screen t)
+(setq inhibit-startup-screen t)
 
 ;; Fake the footer to avoid warnings
 ;; (provide 'init)
